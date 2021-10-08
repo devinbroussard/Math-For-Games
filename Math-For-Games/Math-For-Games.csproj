@@ -6,4 +6,8 @@
     <RootNamespace>Math_For_Games</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Math-Library\Math-Library.csproj" />
+  </ItemGroup>
+
 </Project>

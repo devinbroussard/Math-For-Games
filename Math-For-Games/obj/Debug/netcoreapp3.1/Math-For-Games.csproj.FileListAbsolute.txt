@@ -1,0 +1,14 @@
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.exe
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.deps.json
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.runtimeconfig.json
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.runtimeconfig.dev.json
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.pdb
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.pdb
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.csprojAssemblyReference.cache
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.AssemblyInfoInputs.cache
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.AssemblyInfo.cs
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.csproj.CopyComplete
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.pdb

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Math-Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Math-Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Math-Library.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Math-Library/1.0.0": {
+      "type": "project",
+      "path": "../Math-Library/Math-Library.csproj",
+      "msbuildProject": "../Math-Library/Math-Library.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Math-Library >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\s218014\\.nuget\\packages\\": {}
@@ -32,7 +51,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj": {
+              "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
