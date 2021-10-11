@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using Math_Library;
 
 namespace Math_For_Games
 {
@@ -10,6 +11,8 @@ namespace Math_For_Games
         private static bool _applicationShouldClose = false;
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
+        private static Icon[,] _buffer;
+
 
         /// <summary>
         /// Called to begin the application
@@ -37,8 +40,10 @@ namespace Math_For_Games
         private void Start()
         {
             Scene scene = new Scene();
-            Actor actor = new Actor('P', new Math_Library.Vector2 { X = 0, Y = 0 });
+            Player player = new Player('@', 5, 5, 1, "Player", ConsoleColor.Green);
+            Actor actor = new Actor('A', new Math_Library.Vector2 { X = 10, Y = 10 }, "Actor2", ConsoleColor.Red);
 
+            scene.AddActor(player);
             scene.AddActor(actor);
 
             _currentSceneIndex = AddScene(scene);
@@ -59,8 +64,37 @@ namespace Math_For_Games
         /// </summary>
         private void Draw() 
         {
-            Console.Clear();
+            //Clear the stuff that was on the screen in the last frame
+            _buffer = new Icon[Console.WindowWidth, Console.WindowHeight -1];
+
+            //Resets the cursor position so the previous screen is drawn over
+            Console.SetCursorPosition(0, 0);
+
+            //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();
+
+            //Iterate through buffer
+            for (int y = 0; y < _buffer.GetLength(1); y++)
+            {
+                for (int x = 0; x < _buffer.GetLength(0); x++)
+                {
+                    if (_buffer[x, y].Symbol == '\0')
+                    {
+                        _buffer[x, y].Symbol = ' ';
+                    }
+
+                    //Set console text color to be the color of item at buffer
+                    Console.ForegroundColor = _buffer[x, y].Color;
+                    //Print the symbol of the item in the buffer
+                    Console.Write(_buffer[x, y].Symbol);
+                }
+
+                //Skip a line once the end of a row has been reached
+                Console.WriteLine();
+            }
+
+            //Sets the cursor visibility to be false
+            Console.CursorVisible = false;
         }
 
         /// <summary>
@@ -68,7 +102,7 @@ namespace Math_For_Games
         /// </summary>
         private void End() 
         {
-            //_scenes[_currentSceneIndex].End();
+            _scenes[_currentSceneIndex].End();
         }
 
         /// <summary>
@@ -93,6 +127,39 @@ namespace Math_For_Games
 
             //Return the last index
             return _scenes.Length - 1;
+        }
+
+        /// <summary>
+        /// Gets the next key in the input stream
+        /// </summary>
+        /// <returns>The key that was pressed</returns>
+        public static ConsoleKey GetNextKey()
+        {
+            //If there is no key being pressed...
+            if (!Console.KeyAvailable)
+                //...return
+                return 0;
+
+            //Return the current key being pressed
+            return Console.ReadKey(true).Key;
+        }
+
+        /// <summary>
+        /// Adds the icon to the buffer to print to the screen in the newxt draw call.
+        /// </summary>
+        /// <returns>Returns false if the position was out of bounds</returns>
+        /// <param name="icon">The icon to draw</param>
+        /// <param name="position">The position of where to draw the icon in the buffer</param>
+        public static bool Render(Icon icon, Vector2 position)
+        {
+            //If the position is out of bounds...
+            if (position.X < 0 || position.X >= _buffer.GetLength(0) || position.Y < 0 || position.Y >= _buffer.GetLength(1))
+                //...return false
+                return false;
+
+            //Set the buffer at the index of the given position to be the icon
+            _buffer[(int)position.X, (int)position.Y] = icon;
+            return true;
         }
     }
 }
