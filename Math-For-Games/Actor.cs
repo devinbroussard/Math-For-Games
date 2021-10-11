@@ -10,6 +10,15 @@ namespace Math_For_Games
         private char _icon;
         private string _name;
         private Vector2 _position;
+        private bool _started;
+        
+        /// <summary>
+        /// True if the start function has been called for this actor
+        /// </summary>
+        public bool Started
+        {
+            get { return _started; }
+        }
 
         public Vector2 Position
         {
@@ -24,7 +33,10 @@ namespace Math_For_Games
             _name = name;
         }
 
-        public virtual void Start() { }
+        public virtual void Start() 
+        {
+            _started = true;
+        }
 
         public virtual void Update() 
         {
