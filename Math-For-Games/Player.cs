@@ -17,7 +17,7 @@ namespace Math_For_Games
         }
         public Vector2 Velocity
         {
-            get { return Velocity; }
+            get { return _velocity; }
             set { _velocity = value; }
         }
 
