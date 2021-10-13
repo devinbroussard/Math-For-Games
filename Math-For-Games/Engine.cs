@@ -28,7 +28,7 @@ namespace Math_For_Games
                 Update();
                 Draw();
 
-                Thread.Sleep(20);
+                Thread.Sleep(50);
             }
 
             //Called when the application closes
@@ -41,11 +41,6 @@ namespace Math_For_Games
         private void Start()
         {
             Scene scene = new Scene();
-            Player player = new Player('@', 5, 5, 1, "Player", ConsoleColor.Green);
-            Actor actor = new Actor('A', new Math_Library.Vector2 { X = 10, Y = 10 }, "Actor2", ConsoleColor.Red);
-
-            scene.AddActor(player);
-            scene.AddActor(actor);
 
             _currentSceneIndex = AddScene(scene);
 
@@ -164,6 +159,14 @@ namespace Math_For_Games
             //Set the buffer at the index of the given position to be the icon
             _buffer[(int)position.X, (int)position.Y] = icon;
             return true;
+        }
+
+        /// <summary>
+        /// A function that can be used globally to end the application
+        /// </summary>
+        public static void CloseApplication()
+        {
+            _applicationShouldClose = true;
         }
     }
 }

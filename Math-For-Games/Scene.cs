@@ -36,6 +36,12 @@ namespace Math_For_Games
                 if (!_actors[i].Started)
                     _actors[i].Start();
                 _actors[i].Update();
+                
+                for (int j = 0; j < _actors.Length; j++)
+                {
+                    if (_actors[i].Position == _actors[j].Position && j != i)
+                        _actors[i].OnCollision(_actors[j]); 
+                }
             }
         }
 

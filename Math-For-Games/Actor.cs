@@ -32,6 +32,11 @@ namespace Math_For_Games
             set { _position = value; }
         }
 
+        public Icon Icon
+        {
+            get { return _icon; }
+        }
+
         public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor color = ConsoleColor.White) : 
             this(icon, new Vector2 { X = x, Y = y }, name, color)
         {
@@ -60,5 +65,10 @@ namespace Math_For_Games
         }
 
         public void End() { }
+
+        public virtual void OnCollision(Actor actor)
+        {
+
+        }
     }
 }
