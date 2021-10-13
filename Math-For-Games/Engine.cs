@@ -27,7 +27,8 @@ namespace Math_For_Games
             {
                 Update();
                 Draw();
-                Thread.Sleep(150);
+
+                Thread.Sleep(20);
             }
 
             //Called when the application closes
@@ -56,7 +57,10 @@ namespace Math_For_Games
         /// </summary>
         private void Update()
         {
-           _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].Update();
+
+            while (Console.KeyAvailable)
+                Console.ReadKey(true);
         }
 
         /// <summary>
