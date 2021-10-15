@@ -40,11 +40,6 @@ namespace Math_For_Games
         /// </summary>
         private void Start()
         {
-            Scene scene = new Scene();
-
-            _currentSceneIndex = AddScene(scene);
-
-            _scenes[_currentSceneIndex].Start();
         }
 
         /// <summary>
@@ -53,6 +48,7 @@ namespace Math_For_Games
         private void Update()
         {
             _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].UpdateUI();
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
@@ -61,16 +57,17 @@ namespace Math_For_Games
         /// <summary>
         /// Called every time the game loops to update visuals
         /// </summary>
-        private void Draw() 
+        private void Draw()
         {
             //Clear the stuff that was on the screen in the last frame
-            _buffer = new Icon[Console.WindowWidth, Console.WindowHeight -1];
+            _buffer = new Icon[Console.WindowWidth, Console.WindowHeight - 1];
 
-            //Resets the cursor position so the previous screen is drawn over
+            //Reset the cursor position to the top so the previous screen is drawn over
             Console.SetCursorPosition(0, 0);
 
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();
+            _scenes[_currentSceneIndex].DrawUI();
 
             //Iterate through buffer
             for (int y = 0; y < _buffer.GetLength(1); y++)
@@ -83,7 +80,8 @@ namespace Math_For_Games
                     }
 
                     //Set console text color to be the color of item at buffer
-                    Console.ForegroundColor = _buffer[x, y].Color;
+                    Console.ForegroundColor = _buffer[x, y].ForegroundColor;
+                    Console.BackgroundColor = _buffer[x, y].BackGroundColor;
                     //Print the symbol of the item in the buffer
                     Console.Write(_buffer[x, y].Symbol);
                 }
@@ -99,7 +97,7 @@ namespace Math_For_Games
         /// <summary>
         /// Called when the application exits
         /// </summary>
-        private void End() 
+        private void End()
         {
             _scenes[_currentSceneIndex].End();
         }

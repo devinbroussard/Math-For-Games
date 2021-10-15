@@ -8,7 +8,8 @@ namespace Math_For_Games
     struct Icon
     {
         public char Symbol;
-        public ConsoleColor Color;
+        public ConsoleColor ForegroundColor;
+        public ConsoleColor BackGroundColor;
     }
 
     class Actor
@@ -37,18 +38,20 @@ namespace Math_For_Games
             get { return _icon; }
         }
 
-        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor color = ConsoleColor.White) : 
-            this(icon, new Vector2 { X = x, Y = y }, name, color)
+        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black) :
+            this(icon, new Vector2 { X = x, Y = y }, name, foregroundColor, backgroundColor)
         {
         }
 
-        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.White)
+        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
         {
-            _icon = new Icon { Symbol = icon, Color = color };
+            _icon = new Icon { Symbol = icon, ForegroundColor = foregroundColor, BackGroundColor = backgroundColor };
             _position = position;
             _name = name;
         }
 
+        public Actor()
+        { }
 
         public virtual void Start() 
         {
