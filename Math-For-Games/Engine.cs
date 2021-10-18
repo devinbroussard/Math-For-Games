@@ -31,7 +31,7 @@ namespace Math_For_Games
             while (!_applicationShouldClose && !Raylib.WindowShouldClose())
             {
                 //Get how much time has passed since the application started
-                currentTime = _stopwatch.ElapsedMilliseconds;
+                currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
 
                 //Set delta time to tbe the difference in time from the last time recorded to the current time
                 deltaTime = currentTime - lastTime;
