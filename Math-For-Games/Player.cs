@@ -47,6 +47,11 @@ namespace Math_For_Games
 
         }
 
+        public void ShootBullet()
+        {
+
+        }
+
         public override void OnCollision(Actor actor)
         {
             Engine.CloseApplication();
