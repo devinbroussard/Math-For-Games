@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Math_Library;
+using Raylib_cs;
 
 namespace Math_For_Games
 {
@@ -23,12 +24,10 @@ namespace Math_For_Games
             Start();
 
             //Loops until the application is told to close
-            while (!_applicationShouldClose)
+            while (!_applicationShouldClose && !Raylib.WindowShouldClose())
             {
                 Update();
                 Draw();
-
-                Thread.Sleep(50);
             }
 
             //Called when the application closes
@@ -40,6 +39,16 @@ namespace Math_For_Games
         /// </summary>
         private void Start()
         {
+            //Create a window using rayLib
+            Raylib.InitWindow(800, 450, "Math For Games");
+
+            Scene scene = new Scene();
+            Player player = new Player('@', 10, 10, 1, Color.GOLD, "Player");
+
+            scene.AddActor(player);
+            _currentSceneIndex = AddScene(scene);
+            _scenes[_currentSceneIndex].Start();
+
         }
 
         /// <summary>
@@ -59,39 +68,14 @@ namespace Math_For_Games
         /// </summary>
         private void Draw()
         {
-            //Clear the stuff that was on the screen in the last frame
-            _buffer = new Icon[Console.WindowWidth - 1, Console.WindowHeight - 1];
-
-            //Reset the cursor position to the top so the previous screen is drawn over
-            Console.SetCursorPosition(0, 0);
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.BLACK);
 
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();
             _scenes[_currentSceneIndex].DrawUI();
 
-            //Iterate through buffer
-            for (int y = 0; y < _buffer.GetLength(1); y++)
-            {
-                for (int x = 0; x < _buffer.GetLength(0); x++)
-                {
-                    if (_buffer[x, y].Symbol == '\0')
-                    {
-                        _buffer[x, y].Symbol = ' ';
-                    }
-
-                    //Set console text color to be the color of item at buffer
-                    Console.ForegroundColor = _buffer[x, y].ForegroundColor;
-                    Console.BackgroundColor = _buffer[x, y].BackGroundColor;
-                    //Print the symbol of the item in the buffer
-                    Console.Write(_buffer[x, y].Symbol);
-                }
-
-                //Skip a line once the end of a row has been reached
-                Console.Write('\n');
-            }
-
-            //Sets the cursor visibility to be false
-            Console.CursorVisible = false;
+            Raylib.EndDrawing();
         }
 
         /// <summary>
@@ -100,6 +84,7 @@ namespace Math_For_Games
         private void End()
         {
             _scenes[_currentSceneIndex].End();
+            Raylib.CloseWindow();
         }
 
         /// <summary>
@@ -139,24 +124,6 @@ namespace Math_For_Games
 
             //Return the current key being pressed
             return Console.ReadKey(true).Key;
-        }
-
-        /// <summary>
-        /// Adds the icon to the buffer to print to the screen in the newxt draw call.
-        /// </summary>
-        /// <returns>Returns false if the position was out of bounds</returns>
-        /// <param name="icon">The icon to draw</param>
-        /// <param name="position">The position of where to draw the icon in the buffer</param>
-        public static bool Render(Icon icon, Vector2 position)
-        {
-            //If the position is out of bounds...
-            if (position.X < 0 || position.X >= _buffer.GetLength(0) || position.Y < 0 || position.Y >= _buffer.GetLength(1))
-                //...return false
-                return false;
-
-            //Set the buffer at the index of the given position to be the icon
-            _buffer[(int)position.X, (int)position.Y] = icon;
-            return true;
         }
 
         /// <summary>

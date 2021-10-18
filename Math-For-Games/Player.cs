@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Math_Library;
+using Raylib_cs;
 
 namespace Math_For_Games
 {
@@ -21,8 +22,8 @@ namespace Math_For_Games
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, string name = "actor", ConsoleColor color = ConsoleColor.White)
-            : base(icon, x, y, name, color)
+        public Player(char icon, float x, float y, float speed, Color color, string name = "actor")
+            : base(icon, x, y, color)
         {
             _speed = speed;
         }

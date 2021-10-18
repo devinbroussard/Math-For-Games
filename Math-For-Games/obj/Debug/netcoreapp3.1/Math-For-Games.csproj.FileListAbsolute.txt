@@ -12,3 +12,8 @@ C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.csproj.CopyComplete
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.dll
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.pdb
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Raylib-cs.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libraylib.so
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll

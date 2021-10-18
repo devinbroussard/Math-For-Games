@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Math_Library;
+using Raylib_cs;
 
 namespace Math_For_Games
 {
     struct Icon
     {
         public char Symbol;
-        public ConsoleColor ForegroundColor;
-        public ConsoleColor BackGroundColor;
+        public Color Color;
     }
 
     class Actor
@@ -38,14 +38,14 @@ namespace Math_For_Games
             get { return _icon; }
         }
 
-        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black) :
-            this(icon, new Vector2 { X = x, Y = y }, name, foregroundColor, backgroundColor)
+        public Actor(char icon, float x, float y, Color color, string name = "Actor") :
+            this(icon, new Vector2 { X = x, Y = y }, color, name)
         {
         }
 
-        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
+        public Actor(char icon, Vector2 position, Color color, string name = "Actor")
         {
-            _icon = new Icon { Symbol = icon, ForegroundColor = foregroundColor, BackGroundColor = backgroundColor };
+            _icon = new Icon { Symbol = icon, Color = color};
             _position = position;
             _name = name;
         }
@@ -64,7 +64,7 @@ namespace Math_For_Games
 
         public virtual void Draw() 
         {
-            Engine.Render(_icon, Position);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Position.X, (int)Position.Y, 50, Icon.Color);
         }
 
         public void End() { }
