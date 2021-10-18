@@ -61,7 +61,7 @@ namespace Math_For_Games
             Raylib.SetTargetFPS(0);
 
             Scene scene = new Scene();
-            Player player = new Player('@', 10, 10, 1, Color.GOLD, "Player");
+            Player player = new Player('@', 10, 10, 50, Color.GOLD, "Player");
 
             scene.AddActor(player);
             _currentSceneIndex = AddScene(scene);

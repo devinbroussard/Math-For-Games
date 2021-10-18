@@ -14,6 +14,39 @@ namespace Math_Library
         }
 
         /// <summary>
+        /// Gets the length of the vector
+        /// </summary>
+        public float Magnitude
+        {
+            get { return (float)Math.Sqrt(X * X + Y * Y); }
+        }
+
+        /// <summary>
+        /// Property that returns the normalized value of the vector2
+        /// </summary>
+        public Vector2 Normalized
+        {
+            get
+            {
+                Vector2 value = this;
+                return value.Normalize();
+            }
+        }
+
+        /// <summary>
+        /// Changes this vector to have a magnitude that is equal to one
+        /// </summary>
+        /// <returns>The result of the normalization
+        /// Returns an empty vector if the magnitude is zero</returns>
+        public Vector2 Normalize()
+        {
+            if (Magnitude == 0)
+                return new Vector2();
+
+            else return this / Magnitude;
+        }
+
+        /// <summary>
         /// Adds the x value and they values of the second vector to the first
         /// </summary>
         /// <param name="lhs">Left hand vector2</param>
