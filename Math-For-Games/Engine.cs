@@ -61,8 +61,8 @@ namespace Math_For_Games
             Raylib.SetTargetFPS(0);
 
             Scene scene = new Scene();
-            Player player = new Player('O', 10, 10, 100, Color.RAYWHITE, "Player");
-            Actor enemy = new Actor('U', 150, 10, Color.RED, "Enemy");
+            Player player = new Player('@', 10, 10, 100, Color.RAYWHITE, scene, "Player");
+            Actor enemy = new Actor('X', 150, 10, Color.RED, "Enemy");
 
             scene.AddActor(player);
             scene.AddActor(enemy);

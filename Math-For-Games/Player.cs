@@ -10,6 +10,7 @@ namespace Math_For_Games
     {
         private float _speed;
         private Vector2 _velocity;
+        private Scene _scene;
 
         public float Speed
         {
@@ -22,10 +23,11 @@ namespace Math_For_Games
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, Color color, string name = "actor")
+        public Player(char icon, float x, float y, float speed, Color color, Scene scene, string name = "actor")
             : base(icon, x, y, color)
         {
             _speed = speed;
+            _scene = scene;
         }
 
         public override void Update(float deltaTime)
@@ -34,6 +36,15 @@ namespace Math_For_Games
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
             int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+            {
+                Bullet bullet = new Bullet('-', Position, Color.LIME, 1000, "Bullet");
+                _scene.AddActor(bullet);
+            }
+
+            //if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+            //    _scene.AddActor(ShootBullet(deltaTime));
 
             Vector2 moveDirection = new Vector2(xDireciton, yDirection);
 
@@ -47,14 +58,8 @@ namespace Math_For_Games
 
         }
 
-        public void ShootBullet()
-        {
-
-        }
-
         public override void OnCollision(Actor actor)
         {
-            Engine.CloseApplication();
         }
     }
 }

@@ -71,7 +71,8 @@ namespace Math_For_Games
 
         public virtual void OnCollision(Actor actor)
         {
-
+            if (actor is Bullet)
+                _icon.Symbol = '\0';
         }
     }
 }
