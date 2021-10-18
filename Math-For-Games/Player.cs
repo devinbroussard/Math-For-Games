@@ -28,23 +28,16 @@ namespace Math_For_Games
             _speed = speed;
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
-            Vector2 moveDirection = new Vector2();
+            int xDireciton = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
+            int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            ConsoleKey keyPressed = Engine.GetNextKey();
+            Vector2 moveDirection = new Vector2(xDireciton, yDirection);
 
-            if (keyPressed == ConsoleKey.A)
-                moveDirection = new Vector2 { X = -1 };
-            if (keyPressed == ConsoleKey.D)
-                moveDirection = new Vector2 { X = 1 };
-            if (keyPressed == ConsoleKey.W)
-                moveDirection = new Vector2 { Y = -1 };
-            if (keyPressed == ConsoleKey.S)
-                moveDirection = new Vector2 { Y = 1 };
-
-
-            Velocity = moveDirection * Speed;
+            Velocity = moveDirection * Speed * deltaTime;
             Position += Velocity;
         }
 

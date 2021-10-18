@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 using Math_Library;
 using Raylib_cs;
 
@@ -12,8 +13,7 @@ namespace Math_For_Games
         private static bool _applicationShouldClose = false;
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
-        private static Icon[,] _buffer;
-
+        private Stopwatch _stopwatch = new Stopwatch();
 
         /// <summary>
         /// Called to begin the application
@@ -23,11 +23,26 @@ namespace Math_For_Games
             //Call start for the entire application
             Start();
 
+            float currentTime = 0;
+            float lastTime = 0;
+            float deltaTime = 0;
+
             //Loops until the application is told to close
             while (!_applicationShouldClose && !Raylib.WindowShouldClose())
             {
-                Update();
+                //Get how much time has passed since the application started
+                currentTime = _stopwatch.ElapsedMilliseconds;
+
+                //Set delta time to tbe the difference in time from the last time recorded to the current time
+                deltaTime = currentTime - lastTime;
+
+                //Update the application
+                Update(deltaTime);
+                //Draw all items
                 Draw();
+
+                //Set the last time recorded to be the current time
+                lastTime = currentTime;
             }
 
             //Called when the application closes
@@ -39,8 +54,11 @@ namespace Math_For_Games
         /// </summary>
         private void Start()
         {
+            _stopwatch.Start();
+
             //Create a window using rayLib
             Raylib.InitWindow(800, 450, "Math For Games");
+            Raylib.SetTargetFPS(0);
 
             Scene scene = new Scene();
             Player player = new Player('@', 10, 10, 1, Color.GOLD, "Player");
@@ -54,10 +72,10 @@ namespace Math_For_Games
         /// <summary>
         /// Called everytime the game loops
         /// </summary>
-        private void Update()
+        private void Update(float deltaTime)
         {
-            _scenes[_currentSceneIndex].Update();
-            _scenes[_currentSceneIndex].UpdateUI();
+            _scenes[_currentSceneIndex].Update(deltaTime);
+            _scenes[_currentSceneIndex].UpdateUI(deltaTime);
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);

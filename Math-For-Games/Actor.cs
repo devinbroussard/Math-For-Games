@@ -58,13 +58,13 @@ namespace Math_For_Games
             _started = true;
         }
 
-        public virtual void Update() 
+        public virtual void Update(float deltaTime) 
         {
         }
 
         public virtual void Draw() 
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Position.X, (int)Position.Y, 50, Icon.Color);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Position.X, (int)Position.Y, 20, Icon.Color);
         }
 
         public void End() { }

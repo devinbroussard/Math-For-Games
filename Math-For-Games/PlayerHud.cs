@@ -23,7 +23,7 @@ namespace Math_For_Games
             _element.Start();
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             _element.Text = $"This is where you display the player's stat";
         }
