@@ -30,6 +30,12 @@ namespace Math_For_Games
             set { _velocity = value; }
         }
 
+        public override void Start()
+        {
+            base.Start();
+            _stopwatch.Start();
+        }
+
         public Player(char icon, float x, float y, float speed, Color color, Scene scene, int cooldownTime, string name = "actor")
             : base(icon, x, y, color)
         {
@@ -54,15 +60,15 @@ namespace Math_For_Games
 
             Bullet bullet;
 
-            _currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
+            _currentTime = deltaTime;
+            _lastTime = 0;
 
-            if (xDirectionForBullet != 0 || yDirectionForBullet != 0)
+            if ((xDirectionForBullet != 0 || yDirectionForBullet != 0) && (_currentTime - _lastTime >= 1000 || _lastTime == 0))
             {
                 _lastTime = _currentTime;
                 bullet = new Bullet('.', Position, Color.GOLD, 2000, "Player Bullet", xDirectionForBullet, yDirectionForBullet);
                 _scene.AddActor(bullet);
             }
-               
             
             Vector2 moveDirection = new Vector2(xDirection, yDirection);
 
@@ -78,8 +84,8 @@ namespace Math_For_Games
 
         public override void OnCollision(Actor actor)
         {
-            if (actor is Enemy)
-                Engine.CloseApplication();
+            //if (actor is Enemy)
+                //Engine.CloseApplication();
         }
     }
 }
