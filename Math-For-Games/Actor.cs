@@ -66,7 +66,6 @@ namespace Math_For_Games
 
         public virtual void Update(float deltaTime) 
         {
-            Console.WriteLine($"{_name}'s Position: ({Position.X}, {Position.Y})");
         }
 
         public virtual void Draw() 

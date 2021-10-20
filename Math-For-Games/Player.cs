@@ -56,7 +56,7 @@ namespace Math_For_Games
 
             _currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
 
-            if (xDirectionForBullet != 0 || yDirectionForBullet != 0 && _currentTime > _cooldownTime)
+            if (xDirectionForBullet != 0 || yDirectionForBullet != 0)
             {
                 _lastTime = _currentTime;
                 bullet = new Bullet('.', Position, Color.GOLD, 2000, "Player Bullet", xDirectionForBullet, yDirectionForBullet);

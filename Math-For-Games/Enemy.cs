@@ -55,6 +55,7 @@ namespace Math_For_Games
             {
                 Icon = new Icon { Color = Color.BLACK, Symbol = '\0' };
                 _speed = 0;
+                Position = new Vector2(10000000, 10000000);
             }
         }
 
