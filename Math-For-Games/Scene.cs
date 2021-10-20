@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Math_For_Games
 {
@@ -44,7 +45,7 @@ namespace Math_For_Games
 
                 for (int j = 0; j < _actors.Length; j++)
                 {
-                    if (_actors[i].Position == _actors[j].Position && j != i)
+                    if (Math.Ceiling(_actors[i].Position.X) == Math.Ceiling(_actors[j].Position.X) && Math.Ceiling(_actors[i].Position.Y) == Math.Ceiling(_actors[j].Position.Y) && j != i)
                         _actors[i].OnCollision(_actors[j]);
                 }
             }

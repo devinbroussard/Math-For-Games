@@ -6,3 +6,12 @@ C:\Users\s218014\source\repos\Math-For-Games\Math-Library\obj\Debug\netstandard2
 C:\Users\s218014\source\repos\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.AssemblyInfo.cs
 C:\Users\s218014\source\repos\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.dll
 C:\Users\s218014\source\repos\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.pdb
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.deps.json
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.dll
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.pdb
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.csprojAssemblyReference.cache
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.AssemblyInfoInputs.cache
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.AssemblyInfo.cs
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.csproj.CoreCompileInputs.cache
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.dll
+C:\Users\Devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.pdb

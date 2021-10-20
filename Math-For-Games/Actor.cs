@@ -12,6 +12,11 @@ namespace Math_For_Games
         public Color Color;
     }
 
+    struct Hitbox
+    { 
+
+    }
+
     class Actor
     {
         private Icon _icon;
@@ -36,6 +41,7 @@ namespace Math_For_Games
         public Icon Icon
         {
             get { return _icon; }
+            set { _icon = value; }
         }
 
         public Actor(char icon, float x, float y, Color color, string name = "Actor") :
@@ -60,11 +66,12 @@ namespace Math_For_Games
 
         public virtual void Update(float deltaTime) 
         {
+            Console.WriteLine($"{_name}'s Position: ({Position.X}, {Position.Y})");
         }
 
         public virtual void Draw() 
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Position.X, (int)Position.Y, 20, Icon.Color);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Position.X, (int)Position.Y, 60, Icon.Color);
         }
 
         public void End() { }
@@ -74,5 +81,6 @@ namespace Math_For_Games
             if (actor is Bullet)
                 _icon.Symbol = '\0';
         }
+
     }
 }
