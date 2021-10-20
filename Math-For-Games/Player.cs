@@ -60,13 +60,13 @@ namespace Math_For_Games
 
             Bullet bullet;
 
-            _currentTime = deltaTime;
-            _lastTime = 0;
+            _currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
+            Console.WriteLine(_currentTime);
 
-            if ((xDirectionForBullet != 0 || yDirectionForBullet != 0) && (_currentTime - _lastTime >= 1000 || _lastTime == 0))
+            if ((xDirectionForBullet != 0 || yDirectionForBullet != 0) && (_currentTime >= _lastTime + 0.3 || _lastTime == 0))
             {
                 _lastTime = _currentTime;
-                bullet = new Bullet('.', Position, Color.GOLD, 2000, "Player Bullet", xDirectionForBullet, yDirectionForBullet);
+                bullet = new Bullet('o', Position, Color.GOLD, 2000, "Player Bullet", xDirectionForBullet, yDirectionForBullet);
                 _scene.AddActor(bullet);
             }
             
@@ -84,8 +84,8 @@ namespace Math_For_Games
 
         public override void OnCollision(Actor actor)
         {
-            //if (actor is Enemy)
-                //Engine.CloseApplication();
+            if (actor is Enemy)
+                Engine.CloseApplication();
         }
     }
 }
