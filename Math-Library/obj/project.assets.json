@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj",
+      "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj",
       "projectName": "Math-Library",
-      "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj",
+      "projectPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj",
       "packagesPath": "C:\\Users\\s218014\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\obj\\",
+      "outputPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\s218014\\AppData\\Roaming\\NuGet\\NuGet.Config",

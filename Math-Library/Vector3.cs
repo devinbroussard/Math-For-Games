@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Math_Library
 {
-    public struct Vector2
+    public struct Vector3
     {
         public float X;
         public float Y;
+        public float Z;
 
-        public Vector2(float x, float y)
+        public Vector3(float x, float y, float z)
         {
             X = x;
             Y = y;
+            Z = z;
         }
 
         /// <summary>
@@ -18,17 +22,17 @@ namespace Math_Library
         /// </summary>
         public float Magnitude
         {
-            get { return (float)Math.Sqrt(X * X + Y * Y); }
+            get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); }
         }
 
         /// <summary>
         /// Property that returns the normalized value of the vector2
         /// </summary>
-        public Vector2 Normalized
+        public Vector3 Normalized
         {
             get
             {
-                Vector2 value = this;
+                Vector3 value = this;
                 return value.Normalize();
             }
         }
@@ -38,10 +42,10 @@ namespace Math_Library
         /// </summary>
         /// <returns>The result of the normalization
         /// Returns an empty vector if the magnitude is zero</returns>
-        public Vector2 Normalize()
+        public Vector3 Normalize()
         {
             if (Magnitude == 0)
-                return new Vector2();
+                return new Vector3();
 
             else return this /= Magnitude;
         }
@@ -49,15 +53,15 @@ namespace Math_Library
         /// <param name="lhs">The left hand side of the operation</param>
         /// <param name="rhs">THe right hand side of the operation</param>
         /// <returns>The dot product of the first vector onto the second</returns>
-        public static float GetDotProduct(Vector2 lhs, Vector2 rhs)
+        public static float GetDotProduct(Vector3 lhs, Vector3 rhs)
         {
-            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
         /// <param name="lhs">Left hand side of operation</param>
         /// <param name="rhs">Right hand side of operation</param>
         /// <returns>Returns the distance between two vectors</returns>
-        public static float GetDistance(Vector2 lhs, Vector2 rhs)
+        public static float GetDistance(Vector3 lhs, Vector3 rhs)
         {
             return (rhs - lhs).Magnitude;
         }
@@ -68,9 +72,9 @@ namespace Math_Library
         /// <param name="lhs">Left hand vector2</param>
         /// <param name="rhs">right hand vector2 that will be added to the left</param>
         /// <returns>a new vector2 with the added X and Y variables</returns>
-        public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
+        public static Vector3 operator +(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector2 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y };
+            return new Vector3 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y, Z = lhs.Z + rhs.Z };
         }
 
         /// <summary>
@@ -79,9 +83,9 @@ namespace Math_Library
         /// <param name="lhs">Left hand vector2</param>
         /// <param name="rhs">right hand vector2 that will be subtracted from the first</param>
         /// <returns>a new vector2 with the subtracted variables</returns>
-        public static Vector2 operator -(Vector2 lhs, Vector2 rhs)
+        public static Vector3 operator -(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector2 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
+            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z + rhs.Z };
         }
 
         /// <summary>
@@ -90,9 +94,9 @@ namespace Math_Library
         /// <param name="vec2">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
-        public static Vector2 operator *(Vector2 vec2, float scalar)
+        public static Vector3 operator *(Vector3 vec3, float scalar)
         {
-            return new Vector2 { X = vec2.X * scalar, Y = vec2.Y * scalar };
+            return new Vector3 { X = vec3.X * scalar, Y = vec3.Y * scalar, Z = vec3.Z * scalar };
         }
 
         /// <summary>
@@ -101,9 +105,9 @@ namespace Math_Library
         /// <param name="vec2">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
-        public static Vector2 operator /(Vector2 vec2, float scalar)
+        public static Vector3 operator /(Vector3 vec3, float scalar)
         {
-            return new Vector2 { X = vec2.X / scalar, Y = vec2.Y / scalar };
+            return new Vector3 { X = vec3.X / scalar, Y = vec3.Y / scalar, Z = vec3.Z / scalar };
         }
 
         /// <summary>
@@ -112,9 +116,9 @@ namespace Math_Library
         /// <param name="lhs">The vector on the left hand side</param>
         /// <param name="rhs">The vector on the right hand side</param>
         /// <returns>True if the vectors are equal to each other</returns>
-        public static bool operator ==(Vector2 lhs, Vector2 rhs)
+        public static bool operator ==(Vector3 lhs, Vector3 rhs)
         {
-            return lhs.X == rhs.X && lhs.Y == rhs.Y;
+            return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z;
         }
 
         /// <summary>
@@ -123,11 +127,9 @@ namespace Math_Library
         /// <param name="lhs">The vector on the left hand side</param>
         /// <param name="rhs">The vector on the right hand side</param>
         /// <returns>True if the vectors are not equal to each other</returns>
-        public static bool operator !=(Vector2 lhs, Vector2 rhs)
+        public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
-            return lhs.X != rhs.X || lhs.Y != rhs.Y;
+            return lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z;
         }
     }
-
-
 }

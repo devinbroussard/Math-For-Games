@@ -7,6 +7,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="background.png" />
+    <None Remove="cookie.png" />
+    <None Remove="gun-bullet.png" />
+    <None Remove="Sprites\hungry-man-left.png" />
+    <None Remove="Sprites\hungry-man-right.png" />
+    <None Remove="Sprites\lodis-left.png" />
+    <None Remove="Sprites\lodis-right.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sprites\background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\cookie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\gun-bullet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\hungry-man-left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\hungry-man-right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\lodis-left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\lodis-right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Raylib-cs" Version="3.7.0.1" />
   </ItemGroup>
 

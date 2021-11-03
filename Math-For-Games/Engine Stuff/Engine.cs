@@ -14,6 +14,7 @@ namespace Math_For_Games
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
+        public static Scene CurrentScene;
 
         /// <summary>
         /// Called to begin the application
@@ -58,13 +59,67 @@ namespace Math_For_Games
 
             //Create a window using rayLib
             Raylib.InitWindow(800, 450, "Math For Games");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(60);
 
             Scene scene = new Scene();
-            Player player = new Player('@', 10, 10, 50, Color.GOLD, "Player");
+
+            Player player = new Player(800, 50, 200, 3, 0.5f);
+            player.SetScale(60, 60);
+
+            Enemy enemy1 = new Enemy(150, 150, 155, 3, player, 340, 0.5f);
+            enemy1.SetScale(60, 60);
+            Enemy enemy2 = new Enemy(350, 200, 155, 3, player, 340, 0.5f);
+            enemy2.SetScale(60, 60);
+            Enemy enemy3 = new Enemy(50, 250, 155, 3, player, 340, 0.5f);
+            enemy3.SetScale(60, 60);
+            Enemy enemy4 = new Enemy(450, 250, 155, 3, player, 340, 0.5f);
+            enemy4.SetScale(60, 60);
+            Enemy enemy5 = new Enemy(250, 10, 155, 3, player, 340, 0.5f);
+            enemy5.SetScale(60, 60);
+
+
+
+            CircleCollider playerCollider = new CircleCollider(30, player);
+            //AABBCollider playerCollider = new AABBCollider(50, 50, player);
+            player.Collider = playerCollider;
+
+            AABBCollider enemy1Collider = new AABBCollider(30, 30, enemy1);
+            AABBCollider enemy2Collider = new AABBCollider(30, 30, enemy2);
+            AABBCollider enemy3Collider = new AABBCollider(30, 30, enemy3);
+            AABBCollider enemy4Collider = new AABBCollider(30, 30, enemy4);
+            AABBCollider enemy5Collider = new AABBCollider(30, 30, enemy5);
+
+            enemy1.Collider = enemy1Collider;
+            enemy2.Collider = enemy2Collider;
+            enemy3.Collider = enemy3Collider;
+            enemy4.Collider = enemy4Collider;
+            enemy5.Collider = enemy5Collider;
+
+
+
+            HealthCounter playerHealthCounter = new HealthCounter(player.LocalPosition.X, player.LocalPosition.Y, "Player Health Tracker", Color.BLACK, player);
+            HealthCounter enemy1HealthCounter = new HealthCounter(enemy1.LocalPosition.X, enemy1.LocalPosition.Y, "Enemy1 Health Tracker", Color.BLACK, enemy1);
+            HealthCounter enemy2HealthCounter = new HealthCounter(enemy2.LocalPosition.X, enemy2.LocalPosition.Y, "Enemy2 Health Tracker", Color.BLACK, enemy2);
+            HealthCounter enemy3HealthCounter = new HealthCounter(enemy3.LocalPosition.X, enemy3.LocalPosition.Y, "Enemy3 Health Tracker", Color.BLACK, enemy3);
+            HealthCounter enemy4HealthCounter = new HealthCounter(enemy4.LocalPosition.X, enemy4.LocalPosition.Y, "Enemy4 Health Tracker", Color.BLACK, enemy4);
+            HealthCounter enemy5HealthCounter = new HealthCounter(enemy5.LocalPosition.X, enemy5.LocalPosition.Y, "Enemy5 Health Tracker", Color.BLACK, enemy5);
 
             scene.AddActor(player);
+            scene.AddActor(enemy1);
+            scene.AddActor(enemy2);
+            scene.AddActor(enemy3);
+            scene.AddActor(enemy4);
+            scene.AddActor(enemy5);
+
+            scene.AddUIElement(playerHealthCounter);
+            scene.AddUIElement(enemy1HealthCounter);
+            scene.AddUIElement(enemy2HealthCounter);
+            scene.AddUIElement(enemy3HealthCounter);
+            scene.AddUIElement(enemy4HealthCounter);
+            scene.AddUIElement(enemy5HealthCounter);
+
             _currentSceneIndex = AddScene(scene);
+            CurrentScene = _scenes[_currentSceneIndex];
             _scenes[_currentSceneIndex].Start();
 
         }
@@ -86,8 +141,15 @@ namespace Math_For_Games
         /// </summary>
         private void Draw()
         {
+            Sprite background = new Sprite("Sprites/background.png");
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
+            background.Draw( new Matrix3(
+                800, 0, 400, 
+                0, 450, 225,
+                0, 0, 1)
+                );
+
 
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();
