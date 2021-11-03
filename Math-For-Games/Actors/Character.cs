@@ -9,7 +9,7 @@ namespace Math_For_Games
     class Character : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
+        private Vector3 _velocity;
         private int _health;
 
         public float Speed
@@ -17,7 +17,7 @@ namespace Math_For_Games
             get { return _speed; }
             set { _speed = value; }
         }
-        public Vector2 Velocity
+        public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
@@ -29,12 +29,12 @@ namespace Math_For_Games
             set { _health = value; }
         }
 
-        public Character(float x, float y, float speed, int health, string name = "Character", string path = "")
-             : base(x, y, name, path)
+        public Character(float x, float y, float z, float speed, int health, string name = "Character", Shape shape = Shape.SPHERE)
+             : base(x, y, z, name, shape)
         {
             _health = health;
             _speed = speed;
-            Velocity = new Vector2(0, 0);
+            Velocity = new Vector3(0, 0, 0);
         }
     }
 }

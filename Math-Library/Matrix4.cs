@@ -81,26 +81,27 @@ namespace Math_Library
         /// Creates a new matrix that has been translated by the given value
         /// </summary>
         /// <param name="translation">The position of the new matrix</param>
-        public static Matrix4 CreateTranslation(float x, float y)
+        public static Matrix4 CreateTranslation(float x, float y, float z)
         {
             return new Matrix4(
                 1, 0, 0, x,
                 0, 1, 0, y,
-                0, 0, 1, 0,
+                0, 0, 1, z,
                 0, 0, 0, 1
                 );
         }
+
 
         /// <summary>
         /// Creates a new matrix that has been scaled by the given value
         /// </summary>
         /// <param name="scale">The result of the scale</param>
-        public static Matrix4 CreateScale(float x, float y)
+        public static Matrix4 CreateScale(float x, float y, float z)
         {
             return new Matrix4(
                 x, 0, 0, 0,
                 0, y, 0, 0,
-                0, 0, 1, 0,
+                0, 0, z, 0,
                 0, 0, 0, 1
                 );
         }

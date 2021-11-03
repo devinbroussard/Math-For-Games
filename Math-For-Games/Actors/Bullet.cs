@@ -14,7 +14,7 @@ namespace Math_For_Games
     class Bullet : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
+        private Vector3 _velocity;
         private float _xDirection;
         private float _yDirection;
         /// <summary>
@@ -41,17 +41,15 @@ namespace Math_For_Games
         }
 
 
-        public Bullet(Vector2 position, float speed, string name, float xDirection, float yDirection, Actor owner, 
-            string path = "Sprites/gun-bullet.png", BulletType type = BulletType.GUN)
-            : base(position, name, path)
+        public Bullet(Vector3 position, float speed, string name, float xDirection, float yDirection, Actor owner, 
+            Shape shape, BulletType type = BulletType.GUN)
+            : base(position, name, shape)
         {
             _speed = speed;
             _xDirection = xDirection;
             _yDirection = yDirection;
             _owner = owner;
             _bulletType = type;
-
-            Forward = new Vector2(xDirection, yDirection);
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace Math_For_Games
         public override void Update(float deltaTime)
         {
             if (_bulletType == BulletType.COOKIE)
-                Rotate(2 * deltaTime);
+                Rotate(2 * deltaTime, 2 * deltaTime, 2 * deltaTime);
 
             //Adds the delta time to the time that the bullet has been alive in the scene
             _timeAlive += deltaTime;
@@ -75,10 +73,10 @@ namespace Math_For_Games
                 return;
             }
 
-            _velocity = MoveDirection * _speed * deltaTime;
+            //_velocity = MoveDirection * _speed * deltaTime;
 
 
-            base.Translate(_velocity.X, _velocity.Y);
+            base.Translate(_velocity.X, _velocity.Y, _velocity.Z);
 
             base.Update(deltaTime);
         }
@@ -110,7 +108,7 @@ namespace Math_For_Games
                     if (Enemy.EnemyCount <= 0)
                     {
                         //Create winText UI showing the player that they beat the game...
-                        UIText winText = new UIText(300, 75, "Win Text", Color.WHITE, 200, 200, 50, "You won!");
+                        UIText winText = new UIText(300, 75, 5, "Win Text", Color.WHITE, 200, 200, 50, "You won!");
                         //...and add the UI to the scene
                         Engine.CurrentScene.AddActor(winText);
                     }
@@ -132,7 +130,7 @@ namespace Math_For_Games
                 if (player.Health <= 0)
                 {
                     actor.DestroySelf();
-                    UIText loseText = new UIText(300, 75, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
+                    UIText loseText = new UIText(300, 75, 10, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
                     Engine.CurrentScene.AddActor(loseText);
                 }
 

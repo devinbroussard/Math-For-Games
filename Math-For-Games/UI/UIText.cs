@@ -26,9 +26,9 @@ namespace Math_For_Games
         /// <param name="width">How wide the text box is</param>
         /// <param name="height">How tall the text box is</param>
         /// <param name="text">The tex that will be displayed</param>
-        public UIText(float x, float y, string name, Color color, int width,
+        public UIText(float x, float y, float z, string name, Color color, int width,
             int height, int fontSize, string text = "")
-            : base(x, y, name)
+            : base(x, y, z, name)
         {
             Text = text;
             Width = width;
@@ -38,8 +38,8 @@ namespace Math_For_Games
             Font = Raylib.LoadFont("resources/fonts/alagard.png");
         }
 
-        public UIText(float x, float y, string name, Color color)
-            : base(x, y, name)
+        public UIText(float x, float y, float z, string name, Color color)
+            : base(x, y, z, name)
         {
             Text = "";
             Width = 50;

@@ -66,6 +66,8 @@ namespace Math_Library
             return (rhs - lhs).Magnitude;
         }
 
+        
+
         /// <summary>
         /// Adds the x value and they values of the second vector to the first
         /// </summary>
@@ -130,6 +132,10 @@ namespace Math_Library
         public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z;
+        }
+        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        {
+            return new Vector3();
         }
     }
 }

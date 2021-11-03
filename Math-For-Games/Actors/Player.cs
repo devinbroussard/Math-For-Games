@@ -18,8 +18,8 @@ namespace Math_For_Games
             set { _lastHitTime = value; }
         }
 
-        public Player(float x, float y, float speed, int health, float cooldownTime, string name = "Player", string path = "Sprites/cookie.png")
-            : base(x, y, speed, health, name, path)
+        public Player(float x, float y, float z, float speed, int health, float cooldownTime, string name = "Player", Shape shape = Shape.SPHERE)
+            : base(x, y, z, speed, health, name, shape)
         {
             Speed = speed;
             _cooldownTime = cooldownTime;
@@ -35,21 +35,21 @@ namespace Math_For_Games
             //Gets the xDirection and yDirection of the players input
             int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            int zDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            Vector2 moveDirection = new Vector2(xDirection, yDirection);
+            Vector3 moveDirection = new Vector3(xDirection, 0, zDirection);
 
             int xDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
            + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
-            int yDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            int zDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            if ((xDirectionForBullet != 0 || yDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
+            if ((xDirectionForBullet != 0 || zDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
             {
                 _timeBetweenShots = 0;
-                Bullet bullet = new Bullet(LocalPosition, 200, "Player Bullet", xDirectionForBullet, yDirectionForBullet, this, "Sprites/cookie.png", BulletType.COOKIE);
-                bullet.SetScale(40, 40);
+                Bullet bullet = new Bullet(LocalPosition, 200, "Player Bullet", xDirectionForBullet, zDirectionForBullet, this, Shape.SPHERE, BulletType.COOKIE);
+                bullet.SetScale(40, 40, 40);
                 //CircleCollider bulletCollider = new CircleCollider(20, bullet);
                 AABBCollider bulletCollider = new AABBCollider(30, 30, bullet);
                 bullet.Collider = bulletCollider;
@@ -58,12 +58,8 @@ namespace Math_For_Games
 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
-            if (0 < Velocity.X)
-                Sprite = new Sprite("Sprites/lodis-right.png");
-            else if (Velocity.X < 0)
-                Sprite = new Sprite("Sprites/lodis-left.png");
-
-            base.Translate(Velocity.X, Velocity.Y);
+            
+            base.Translate(Velocity.X, Velocity.Y, Velocity.Z);
 
             base.Update(deltaTime);
         }
@@ -85,7 +81,7 @@ namespace Math_For_Games
                 if (Health <= 0)
                 {
                     DestroySelf();
-                    UIText loseText = new UIText(300, 75, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
+                    UIText loseText = new UIText(300, 75, 10, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
                     Engine.CurrentScene.AddActor(loseText);
                 }
             }
