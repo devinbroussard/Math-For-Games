@@ -87,16 +87,20 @@ namespace Math_For_Games
 
         public Vector2 WorldPosition
         {
+            //Return the global transform's T column
             get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
             set
             {
+                //If the parent has a parent...
                 if (Parent != null)
                 {
+                    //...convert the world cooridinates into local coordinates and translate the actor
                     Vector2 offset = value - Parent.WorldPosition;
-
                     SetTranslation(offset.X / Parent.ScaleX, offset.Y / Parent.ScaleY);
                 }
+                //If this actor doesn't have a parent...
                 else
+                    //...set local position to be the given value
                     SetTranslation(value.X, value.Y);
             }
         }
@@ -104,11 +108,7 @@ namespace Math_For_Games
         public Matrix3 GlobalTransform
         {
             get { return _globalTransform; } 
-            //Needs to change local transform in relation to global
-            set
-            {
-                _globalTransform = value;
-            }
+            private set { _globalTransform = value; }
         }
 
         public Matrix3 LocalTransform
@@ -126,13 +126,6 @@ namespace Math_For_Games
         public Actor[] Children
         {
             get { return _children; }
-        }
-
-
-        public Vector2 Size
-        {
-            get { return new Vector2(_scale.M00, _scale.M11); }
-            set { SetScale(value.X, value.Y); }
         }
 
         public Actor(float x, float y, string name = "Actor", string path = "", ActorTag tag = ActorTag.GENERIC) :
@@ -156,33 +149,54 @@ namespace Math_For_Games
 
         public void UpdateTransforms()
         {
+            //Updates the local transform by combining the seperate transforms
             _localTransform = _translation * _rotation * _scale;
 
+            //If the actor has a parent...
             if (Parent != null)
+                //...Set the actor's global transform to be the parent's global transform combined with the local transform
                 GlobalTransform = Parent.GlobalTransform * LocalTransform;
+            //If the parent doesn't have a parent, set the global transform to be equal to the local transform
             else GlobalTransform = LocalTransform;
         }
 
+        /// <summary>
+        /// Adds an actor the to actor's children array
+        /// </summary>
+        /// <param name="child">The actor that will be added as a child</param>
         public void AddChild(Actor child)
         {
+            //Creates an array that is one element larger than our current children array
             Actor[] tempArray = new Actor[_children.Length + 1];
 
+            //Copies the value of the children array into the temp array
             for (int i = 0; i < _children.Length; i++)
             {
                 tempArray[i] = _children[i];
             }
 
+            //Sets the temp array's last index to be equal to the actor that we are adding as a child
             tempArray[_children.Length] = child;
+            //Set the children array to the temp array
             _children = tempArray;
 
+            //Change the child's parent variable to store this actor
             child.Parent = this;
         }
 
+        /// <summary>
+        /// Removes an actor from the children array
+        /// </summary>
+        /// <param name="child">The actor that you are trying to remove</param>
+        /// <returns>True if a child is removed</returns>
         public bool RemoveChild(Actor child)
         {
+            //Creates a bool variable to store whether or not an actor was removed
+            //Creates a new array that is one element smaller than our current children array
             bool removedActor = false;
             Actor[] tempArray = new Actor[_children.Length - 1];
 
+            //Loops through the array, setting each of the children from children array into the temp array, except for the actor that is being removed
             int j = 0;
             for (int i = 0; i < _children.Length; i++)
             {
@@ -198,11 +212,10 @@ namespace Math_For_Games
                     j++;
                 }
             }
-
+            
+             //Sets the children array equal to the temp array
             _children = tempArray;
-
-            child.Parent = null;
-
+            //Returns whether or not the actor was removed or not
             return removedActor;
         }
 

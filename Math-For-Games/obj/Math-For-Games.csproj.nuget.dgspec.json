@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-For-Games\\Math-For-Games.csproj": {}
+    "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-For-Games\\Math-For-Games.csproj": {
+    "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-For-Games\\Math-For-Games.csproj",
+        "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
         "projectName": "Math-For-Games",
-        "projectPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-For-Games\\Math-For-Games.csproj",
+        "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
         "packagesPath": "C:\\Users\\s218014\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-For-Games\\obj\\",
+        "outputPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\s218014\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj": {
-                "projectPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj"
+              "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj": {
+                "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj"
               }
             }
           }
@@ -66,14 +66,14 @@
         }
       }
     },
-    "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj": {
+    "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj",
+        "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj",
         "projectName": "Math-Library",
-        "projectPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\Math-Library.csproj",
+        "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\Math-Library.csproj",
         "packagesPath": "C:\\Users\\s218014\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s218014\\source\\repos\\Raylib-Shooter\\Math-Library\\obj\\",
+        "outputPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\s218014\\AppData\\Roaming\\NuGet\\NuGet.Config",
