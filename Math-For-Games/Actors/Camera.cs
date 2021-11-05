@@ -4,7 +4,7 @@ using System.Text;
 using Math_Library;
 using Raylib_cs;
 
-namespace Math_For_Games.Actors
+namespace Math_For_Games
 {
     class Camera : Actor
     {
@@ -13,12 +13,38 @@ namespace Math_For_Games.Actors
         public Vector3 up;
         public float fovy;
         public CameraProjection projection;
-        private Camera3D _camera;
-        private Actor _actorToTarget;
+        private Camera3D _camera3D;
+        private Actor _targetActor;
 
-        public Camera(Camera3D camera, Actor actorToTarget)
+        public Camera3D Camera3D
         {
+            get { return _camera3D; }
+            set { _camera3D = value; }
+        }
 
+        public Camera(Actor targetActor)
+        {
+            _camera3D = new Camera3D();
+            _targetActor = targetActor;
+
+            // Camera position
+            _camera3D.position = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y + 10, _targetActor.WorldPosition.Z + 10);
+             // Point the camera is focused on
+            _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y, _targetActor.WorldPosition.Z);
+            _camera3D.up = new System.Numerics.Vector3(0, 1, 0); //Camera up vector (rotation towards target)
+            _camera3D.fovy = 45; // Camera field of view Y
+            _camera3D.projection = CameraProjection.CAMERA_PERSPECTIVE; //Camera mode type
+
+        }
+
+        public override void Update(float deltaTime)
+        {
+            // Camera position
+            _camera3D.position = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y + 10, _targetActor.WorldPosition.Z + 10);
+            // Point the camera is focused on
+            _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y, _targetActor.WorldPosition.Z);
+
+            base.Update(deltaTime);
         }
     }
 }

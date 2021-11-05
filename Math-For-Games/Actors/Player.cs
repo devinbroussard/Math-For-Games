@@ -28,6 +28,8 @@ namespace Math_For_Games
 
         public override void Update(float deltaTime)
         {
+            Rotate(1, 1, 1);
+
             _lastHitTime += deltaTime;
             //Adds deltaTime to time between shots
             _timeBetweenShots += deltaTime;
@@ -60,7 +62,7 @@ namespace Math_For_Games
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             
-            base.Translate(Velocity.X, Velocity.Y * 20, Velocity.Z);
+            //base.Translate(Velocity.X, Velocity.Y * 20, Velocity.Z);
             base.Rotate(xRotation, 0, 0);
 
             if (WorldPosition.Y > 0.5)
