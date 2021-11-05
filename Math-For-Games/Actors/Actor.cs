@@ -86,14 +86,14 @@ namespace Math_For_Games
 
         public Vector3 LocalPosition
         {
-            get { return new Vector3(_translation.M02, _translation.M12, _translation.M22); }
+            get { return new Vector3(_translation.M03, _translation.M13, _translation.M23); }
             set { SetTranslation(value.X, value.Y, value.Z); }
         }
 
         public Vector3 WorldPosition
         {
             //Return the global transform's T column
-            get { return new Vector3(_globalTransform.M02, _globalTransform.M12, _globalTransform.M22); }
+            get { return new Vector3(_globalTransform.M03, _globalTransform.M13, _globalTransform.M23); }
             set
             {
                 //If the parent has a parent...

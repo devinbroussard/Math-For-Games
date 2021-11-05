@@ -55,7 +55,7 @@ namespace Math_For_Games
         {
             _camera.position = new System.Numerics.Vector3(0, 10, 10); // Camera position
             _camera.target = new System.Numerics.Vector3(0, 0, 0); // Point the camera is focused on
-            _camera.up = new System.Numerics.Vector3(0, 1, 0); //Camera up vector (rotation towards target)
+            _camera.up = new System.Numerics.Vector3(0, 10, 0); //Camera up vector (rotation towards target)
             _camera.fovy = 45; // Camera field of view Y
             _camera.projection = CameraProjection.CAMERA_PERSPECTIVE; //Camera mode type
 
@@ -76,8 +76,9 @@ namespace Math_For_Games
 
             Scene scene = new Scene();
 
-            Player player = new Player(0, 0, 50, 3000, 3, 1);
+            Player player = new Player(0, 1, 0, 15, 3, 1);
             player.SetScale(1, 1, 1);
+
 
             scene.AddActor(player);
 
@@ -95,6 +96,14 @@ namespace Math_For_Games
             _scenes[_currentSceneIndex].Update(deltaTime);
             _scenes[_currentSceneIndex].UpdateUI(deltaTime);
 
+
+            _camera.target = new System.Numerics.Vector3(CurrentScene.Actors[0].WorldPosition.X, CurrentScene.Actors[0].WorldPosition.Y, CurrentScene.Actors[0].WorldPosition.Z);
+            _camera.position = new System.Numerics.Vector3(CurrentScene.Actors[0].WorldPosition.X, CurrentScene.Actors[0].WorldPosition.Y + 10, 
+                CurrentScene.Actors[0].WorldPosition.Z + 10);
+            _camera.up = new System.Numerics.Vector3(0, CurrentScene.Actors[0].GlobalTransform.M11, 0);
+
+
+
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
         }
@@ -110,14 +119,6 @@ namespace Math_For_Games
 
             Raylib.ClearBackground(Color.DARKGRAY);
             Raylib.DrawGrid(50, 1);
-
-
-            background.Draw( new Matrix3(
-                800, 0, 400, 
-                0, 450, 225,
-                0, 0, 1)
-                );
-
 
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();

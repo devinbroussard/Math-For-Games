@@ -16,12 +16,12 @@ namespace Math_For_Games
         private float _speed;
         private Vector3 _velocity;
         private float _xDirection;
-        private float _yDirection;
+        private float _zDirection;
         /// <summary>
         /// Variable used to track the time that the bullet has been alive in the scene
         /// </summary>
         private float _timeAlive;
-        private Vector2 _moveDirection;
+        private Vector3 _moveDirection;
         private BulletType _bulletType;
         private Actor _owner;
 
@@ -30,24 +30,24 @@ namespace Math_For_Games
             get { return _owner; }
         }
 
-        public Vector2 MoveDirection
+        public Vector3 MoveDirection
         {
             get
             {
-                _moveDirection = new Vector2(_xDirection, _yDirection);
+                _moveDirection = new Vector3(_xDirection, 0, _zDirection);
                 return _moveDirection;
             }
             set { value = _moveDirection; }
         }
 
 
-        public Bullet(Vector3 position, float speed, string name, float xDirection, float yDirection, Actor owner, 
+        public Bullet(Vector3 position, float speed, string name, float xDirection, float zDirection, Actor owner, 
             Shape shape, BulletType type = BulletType.GUN)
             : base(position, name, shape)
         {
             _speed = speed;
             _xDirection = xDirection;
-            _yDirection = yDirection;
+            _zDirection = zDirection;
             _owner = owner;
             _bulletType = type;
         }
@@ -73,7 +73,7 @@ namespace Math_For_Games
                 return;
             }
 
-            //_velocity = MoveDirection * _speed * deltaTime;
+            _velocity = MoveDirection * _speed * deltaTime;
 
 
             base.Translate(_velocity.X, _velocity.Y, _velocity.Z);

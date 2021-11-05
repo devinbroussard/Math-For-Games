@@ -21,6 +21,11 @@ namespace Math_For_Games
             _UIElements = new Actor[0];
         }
 
+        public Actor[] Actors
+        {
+            get { return _actors; }
+        }
+
         /// <summary>
         /// </summary>
         public virtual void Start()
