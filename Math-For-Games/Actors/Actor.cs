@@ -17,7 +17,8 @@ namespace Math_For_Games
     public enum Shape
     {
         CUBE,
-        SPHERE
+        SPHERE,
+        NULL
     }
 
     class Actor
@@ -37,12 +38,18 @@ namespace Math_For_Games
         private Actor[] _children = new Actor[0];
         private Actor _parent;
         private Shape _shape;
+        private Color _color;
 
         //The collider attached to this actor
         public Collider Collider
         {
             get { return _collider; }
             set { _collider = value; }
+        }
+
+        public Color ShapeColor
+        {
+            get { return _color; }
         }
 
         public ActorTag Tag
@@ -133,13 +140,14 @@ namespace Math_For_Games
             get { return _children; }
         }
 
-        public Actor(float x, float y, float z, string name = "Actor", Shape shape = Shape.CUBE, ActorTag tag = ActorTag.GENERIC) :
-            this(new Vector3 { X = x, Y = y, Z = z}, name, shape, tag)
+        public Actor(float x, float y, float z, Shape shape, Color color, string name = "Actor", ActorTag tag = ActorTag.GENERIC) :
+            this(new Vector3 { X = x, Y = y, Z = z}, shape, color, name, tag)
         {
         }
 
-        public Actor(Vector3 position, string name = "Actor", Shape shape = Shape.CUBE, ActorTag tag = ActorTag.GENERIC )
+        public Actor(Vector3 position, Shape shape, Color color, string name = "Actor", ActorTag tag = ActorTag.GENERIC )
         {
+            SetColor(color);
             LocalPosition = position;
             _name = name;
             Tag = tag;
@@ -147,7 +155,9 @@ namespace Math_For_Games
         }
 
         public Actor()
-        { }
+        {
+            _shape = Shape.NULL;
+        }
 
         public void UpdateTransforms()
         {
@@ -235,13 +245,19 @@ namespace Math_For_Games
         {
             System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
 
+            System.Numerics.Vector3 endPos = new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
+
             switch (_shape)
+
             {
                 case Shape.CUBE:
-                    Raylib.DrawCube(position, ScaleX, ScaleY, ScaleZ, Color.RED);
+                    Raylib.DrawCube(position, ScaleX, ScaleY, ScaleZ, ShapeColor);
                     break;
                 case Shape.SPHERE:
-                    Raylib.DrawSphere(position, ScaleX, Color.RED);
+                    Raylib.DrawSphere(position, ScaleX, ShapeColor);
+                    Raylib.DrawLine3D(position, endPos, Color.RED);
+                    break;
+                case Shape.NULL:
                     break;
             }
         }
@@ -349,14 +365,61 @@ namespace Math_For_Games
             //Find the direction that the actor should look in
             Vector3 direction = (position - LocalPosition).Normalized;
 
+            //If the direction has a length of zero...
             if (direction.Magnitude == 0)
+                //...set it tobe the default forward value
                 direction = new Vector3(0, 0, 1);
-
+            
+            //Create a vector that points directly upwards
             Vector3 alignAxis = new Vector3(0, 1, 0);
 
+            //Creates two new vectors that will be the new x and y axis
             Vector3 newYAxis = new Vector3(0, 1, 0);
             Vector3 newXAxis = new Vector3(1, 0, 0);
 
+            //If the direciton vector is parallel to the alignAxis vector...
+            if (Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
+            {
+                //Set the alignAxis vector to point directly to the right
+                alignAxis = new Vector3(1, 0, 0);
+
+                //Get the cross product of the direction and the right to find the new Y axis
+                newYAxis = Vector3.GetCrossProduct(direction, alignAxis);
+                newYAxis.Normalize(); //Normalize the new Y axis to prevent the matrix from being scaled
+
+                //Get the cross product of the new y axis and the direction to find the new x axis
+                newXAxis = Vector3.GetCrossProduct(newYAxis, direction);
+                newXAxis.Normalize(); //Also normalize the new X Axis
+            }
+            else
+            {
+                //Get the cross product of upwards and the direction to find the new X axis
+                newXAxis = Vector3.GetCrossProduct(alignAxis, direction);
+                //Normalize the new X axis to prevent the matrix from being scaled
+                newXAxis.Normalize();
+
+                //Get the cross product of the direction and the new X axis to find the new Y axis
+                newYAxis = Vector3.GetCrossProduct(direction, newXAxis);
+                newYAxis.Normalize(); //Also normalize this axis
+            }
+
+            //Create a new matrix with the new axis
+            _rotation = new Matrix4(
+                newXAxis.X, newYAxis.X, direction.X, 0,
+                newXAxis.Y, newYAxis.Y, direction.Y, 0,
+                newXAxis.Z, newYAxis.Z, direction.Z, 0,
+                0, 0, 0, 1);
+
+        }
+
+        public void SetColor(Color color)
+        {
+            _color = color;
+        }
+
+        public void SetColor(Vector4 colorValue)
+        {
+            _color = new Color((int)colorValue.X, (int)colorValue.Y, (int)colorValue.Z, (int)colorValue.W);
         }
     }
 }

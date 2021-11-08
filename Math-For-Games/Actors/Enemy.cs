@@ -14,8 +14,8 @@ namespace Math_For_Games
         private float _timeBetweenShots;
         private float _cooldownTime;
 
-        public Enemy(float x, float y, float z, float speed, int health, Actor actor, float maxFov, float cooldownTime, string name = "Enemy", Shape shape = Shape.SPHERE)
-            : base(x, y, z, speed, health, name, shape)
+        public Enemy(float x, float y, float z, float speed, int health, Actor actor, float maxFov, float cooldownTime, Color color, string name = "Enemy", Shape shape = Shape.SPHERE)
+            : base(x, y, z, speed, health, color, name, shape)
         {
             _actorToChase = actor;
             _maxFov = maxFov;

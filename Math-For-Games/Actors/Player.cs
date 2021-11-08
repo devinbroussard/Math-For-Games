@@ -18,8 +18,8 @@ namespace Math_For_Games
             set { _lastHitTime = value; }
         }
 
-        public Player(float x, float y, float z, float speed, int health, float cooldownTime, string name = "Player", Shape shape = Shape.CUBE)
-            : base(x, y, z, speed, health, name, shape)
+        public Player(float x, float y, float z, float speed, int health, float cooldownTime, Color color, string name = "Player", Shape shape = Shape.CUBE)
+            : base(x, y, z, speed, health, color, name, shape)
         {
             Speed = speed;
             _cooldownTime = cooldownTime;
@@ -28,45 +28,48 @@ namespace Math_For_Games
 
         public override void Update(float deltaTime)
         {
-            Rotate(1, 1, 1);
 
             _lastHitTime += deltaTime;
             //Adds deltaTime to time between shots
             _timeBetweenShots += deltaTime;
 
             //Gets the xDirection and yDirection of the players input
-            int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
+            int sideDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int yDirection = Convert.ToInt32(Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE)) * 50;
-            int zDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
+            int yDirection = Convert.ToInt32(Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE));
+            int forwardDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S)) - 1;
 
-            Vector3 moveDirection = new Vector3(xDirection, yDirection, zDirection);
+            if (WorldPosition.Y >= 1)
+                yDirection = 0;
+            
+            Vector3 moveDirection = new Vector3(sideDirection, yDirection, forwardDirection);
 
-            int xRotation = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
-           + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
+            int zRotation = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+           - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
             int zDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
+
+            //System.Numerics.Vector3 endPos = 
+                //new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + 
+                //Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
 
             if (( zDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
             {
                 _timeBetweenShots = 0;
-                Bullet bullet = new Bullet(LocalPosition, 30, "Player Bullet", 0, zDirectionForBullet, this, Shape.CUBE, BulletType.COOKIE);
-                bullet.SetScale(1, 1, 1);
+                Bullet bullet = new Bullet(LocalPosition, 50, "Player Bullet", Forward, this, Color.LIME, Shape.CUBE, BulletType.COOKIE);
+                bullet.SetScale(0.7f, 0.7f, 0.7f);
                 //CircleCollider bulletCollider = new CircleCollider(20, bullet);
                 AABBCollider bulletCollider = new AABBCollider(30, 30, bullet);
                 bullet.Collider = bulletCollider;
                 Engine.CurrentScene.AddActor(bullet);
             }
 
-            Velocity = moveDirection.Normalized * Speed * deltaTime;
+            Velocity =  Forward + moveDirection.Normalized * Speed + Accleration * deltaTime;
 
-            
-            //base.Translate(Velocity.X, Velocity.Y * 20, Velocity.Z);
-            base.Rotate(xRotation, 0, 0);
+            base.Rotate(0, zRotation * 0.05f, 0);
+            base.Translate(Velocity.X, Velocity.Y * 5, Velocity.Z);
 
-            if (WorldPosition.Y > 0.5)
-                base.Translate(0, -0.5f, 0);
 
             base.Update(deltaTime);
         }
@@ -88,7 +91,7 @@ namespace Math_For_Games
                 if (Health <= 0)
                 {
                     DestroySelf();
-                    UIText loseText = new UIText(300, 75, 10, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
+                    UIText loseText = new UIText(300, 75, 10, Shape.CUBE,"Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
                     Engine.CurrentScene.AddActor(loseText);
                 }
             }

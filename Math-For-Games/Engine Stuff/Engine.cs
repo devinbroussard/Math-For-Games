@@ -65,7 +65,7 @@ namespace Math_For_Games
 
             Scene scene = new Scene();
 
-            Player player = new Player(0, 1, 0, 15, 3, 1);
+            Player player = new Player(0, 1, 0, 1, 3, 0.5f, Color.RAYWHITE, "Player", Shape.SPHERE);
             _camera = new Camera(player);
 
             player.AddChild(_camera);

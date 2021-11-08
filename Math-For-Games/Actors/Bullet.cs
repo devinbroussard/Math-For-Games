@@ -15,8 +15,6 @@ namespace Math_For_Games
     {
         private float _speed;
         private Vector3 _velocity;
-        private float _xDirection;
-        private float _zDirection;
         /// <summary>
         /// Variable used to track the time that the bullet has been alive in the scene
         /// </summary>
@@ -32,22 +30,17 @@ namespace Math_For_Games
 
         public Vector3 MoveDirection
         {
-            get
-            {
-                _moveDirection = new Vector3(_xDirection, 0, _zDirection);
-                return _moveDirection;
-            }
-            set { value = _moveDirection; }
+            get { return _moveDirection; }
+            set { _moveDirection = value; }
         }
 
 
-        public Bullet(Vector3 position, float speed, string name, float xDirection, float zDirection, Actor owner, 
-            Shape shape, BulletType type = BulletType.GUN)
-            : base(position, name, shape)
+        public Bullet(Vector3 position, float speed, string name, Vector3 forwardDirection, Actor owner, 
+            Color color, Shape shape, BulletType type = BulletType.GUN)
+            : base(position, shape, color, name)
         {
             _speed = speed;
-            _xDirection = xDirection;
-            _zDirection = zDirection;
+            MoveDirection = forwardDirection;
             _owner = owner;
             _bulletType = type;
         }
@@ -73,7 +66,7 @@ namespace Math_For_Games
                 return;
             }
 
-            _velocity = MoveDirection * _speed * deltaTime;
+            _velocity = MoveDirection.Normalized * _speed * deltaTime;
 
 
             base.Translate(_velocity.X, _velocity.Y, _velocity.Z);
@@ -108,7 +101,7 @@ namespace Math_For_Games
                     if (Enemy.EnemyCount <= 0)
                     {
                         //Create winText UI showing the player that they beat the game...
-                        UIText winText = new UIText(300, 75, 5, "Win Text", Color.WHITE, 200, 200, 50, "You won!");
+                        UIText winText = new UIText(300, 75, 5, Shape.CUBE, "Win Text", Color.WHITE, 200, 200, 50, "You won!");
                         //...and add the UI to the scene
                         Engine.CurrentScene.AddActor(winText);
                     }
@@ -130,7 +123,7 @@ namespace Math_For_Games
                 if (player.Health <= 0)
                 {
                     actor.DestroySelf();
-                    UIText loseText = new UIText(300, 75, 10, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
+                    UIText loseText = new UIText(300, 75, 10, Shape.CUBE, "Lose Text", Color.WHITE, 200, 200, 50, "You lose!");
                     Engine.CurrentScene.AddActor(loseText);
                 }
 

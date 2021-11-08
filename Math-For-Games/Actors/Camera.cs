@@ -23,24 +23,26 @@ namespace Math_For_Games
         }
 
         public Camera(Actor targetActor)
+            :base()
         {
             _camera3D = new Camera3D();
             _targetActor = targetActor;
+        }
 
+        public override void Start()
+        {
             // Camera position
-            _camera3D.position = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y + 10, _targetActor.WorldPosition.Z + 10);
-             // Point the camera is focused on
-            _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y, _targetActor.WorldPosition.Z);
             _camera3D.up = new System.Numerics.Vector3(0, 1, 0); //Camera up vector (rotation towards target)
             _camera3D.fovy = 45; // Camera field of view Y
             _camera3D.projection = CameraProjection.CAMERA_PERSPECTIVE; //Camera mode type
 
+            SetTranslation(0, 4, -10);
         }
 
         public override void Update(float deltaTime)
         {
             // Camera position
-            _camera3D.position = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y + 10, _targetActor.WorldPosition.Z + 10);
+            _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
             // Point the camera is focused on
             _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y, _targetActor.WorldPosition.Z);
 

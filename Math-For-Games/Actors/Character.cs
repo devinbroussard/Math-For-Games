@@ -10,6 +10,7 @@ namespace Math_For_Games
     {
         private float _speed;
         private Vector3 _velocity;
+        private Vector3 _acceleration;
         private int _health;
 
         public float Speed
@@ -29,8 +30,21 @@ namespace Math_For_Games
             set { _health = value; }
         }
 
-        public Character(float x, float y, float z, float speed, int health, string name = "Character", Shape shape = Shape.SPHERE)
-             : base(x, y, z, name, shape)
+        public Vector3 Accleration
+        {
+            get 
+            {
+                if (GlobalTransform.M13 >= 1)
+                    _acceleration.Y = -4f;
+                else
+                    _acceleration.Y = 0;
+                return _acceleration;
+            }
+            set { _acceleration = value; }
+        }
+
+        public Character(float x, float y, float z, float speed, int health, Color color, string name = "Character", Shape shape = Shape.SPHERE)
+             : base(x, y, z, shape, color, name)
         {
             _health = health;
             _speed = speed;

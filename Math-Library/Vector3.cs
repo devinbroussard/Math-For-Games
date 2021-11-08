@@ -58,6 +58,14 @@ namespace Math_Library
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
+        public static Vector3 GetCrossProduct(Vector3 lhs, Vector3 rhs)
+        {
+            return new Vector3(
+                ((lhs.Y * rhs.Z) - (lhs.Z * rhs.Y)),
+                ((lhs.Z * rhs.X) - (lhs.X * rhs.Z)),
+                ((lhs.X * rhs.Y) - (lhs.Y * rhs.X)));
+        }
+
         /// <param name="lhs">Left hand side of operation</param>
         /// <param name="rhs">Right hand side of operation</param>
         /// <returns>Returns the distance between two vectors</returns>
@@ -67,6 +75,8 @@ namespace Math_Library
         }
 
         
+
+
 
         /// <summary>
         /// Adds the x value and they values of the second vector to the first
