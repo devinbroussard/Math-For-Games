@@ -8,11 +8,6 @@ namespace Math_For_Games
 {
     class Camera : Actor
     {
-        public Vector3 position;
-        public Vector3 target;
-        public Vector3 up;
-        public float fovy;
-        public CameraProjection projection;
         private Camera3D _camera3D;
         private Actor _targetActor;
 
@@ -36,7 +31,7 @@ namespace Math_For_Games
             _camera3D.fovy = 45; // Camera field of view Y
             _camera3D.projection = CameraProjection.CAMERA_PERSPECTIVE; //Camera mode type
 
-            SetTranslation(0, 4, -10);
+            SetTranslation(0, 3, -13);
         }
 
         public override void Update(float deltaTime)

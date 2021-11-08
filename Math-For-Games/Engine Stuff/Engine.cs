@@ -59,20 +59,27 @@ namespace Math_For_Games
         {
             _stopwatch.Start();
 
+            int height = Raylib.GetMonitorHeight(1);
+            int width = Raylib.GetMonitorWidth(1);
             //Create a window using rayLib
-            Raylib.InitWindow(800, 450, "Math For Games");
+            Raylib.InitWindow(width, height, "Math For Games");
+            Raylib.MaximizeWindow();
             Raylib.SetTargetFPS(60);
 
             Scene scene = new Scene();
 
-            Player player = new Player(0, 1, 0, 1, 3, 0.5f, Color.RAYWHITE, "Player", Shape.SPHERE);
+            Player player = new Player(0, 1, 0, 0.01f, 3, 0.5f, Color.SKYBLUE, "Player", Shape.SPHERE);
+            Enemy enemy = new Enemy(0, 1, 3, 2, 3, player, 40, 2, Color.MAROON);
             _camera = new Camera(player);
 
             player.AddChild(_camera);
             player.SetScale(1, 1, 1);
 
+            enemy.SetScale(1, 1, 1);
+
             scene.AddActor(player);
             scene.AddActor(_camera);
+            scene.AddActor(enemy);
 
             _currentSceneIndex = AddScene(scene);
             CurrentScene = _scenes[_currentSceneIndex];
@@ -85,6 +92,8 @@ namespace Math_For_Games
         /// </summary>
         private void Update(float deltaTime)
         {
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
+                Raylib.ToggleFullscreen();
             _scenes[_currentSceneIndex].Update(deltaTime);
             _scenes[_currentSceneIndex].UpdateUI(deltaTime);
 
@@ -103,7 +112,7 @@ namespace Math_For_Games
             Raylib.BeginMode3D(_camera.Camera3D);
 
             Raylib.ClearBackground(Color.DARKGRAY);
-            Raylib.DrawGrid(50, 1);
+            Raylib.DrawGrid(500, 1);
 
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();

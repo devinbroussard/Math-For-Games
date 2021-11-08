@@ -97,7 +97,7 @@ namespace Math_Library
         /// <returns>a new vector2 with the subtracted variables</returns>
         public static Vector3 operator -(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z + rhs.Z };
+            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
         /// <summary>
@@ -165,9 +165,21 @@ namespace Math_Library
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z;
         }
-        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        public static Vector3 operator *(Vector3 vec3, Matrix3 mat3)
         {
-            return new Vector3();
+            return new Vector3(
+                ((vec3.X * mat3.M00) + (vec3.Y * mat3.M01) + (vec3.Z * mat3.M02)),
+                ((vec3.X * mat3.M10) + (vec3.Y * mat3.M11) + (vec3.Z * mat3.M12)),
+                ((vec3.X * mat3.M20) + (vec3.Y * mat3.M21) + (vec3.Z * mat3.M22)));
+        }
+
+    
+        public static Vector3 operator *(Matrix3 mat3, Vector3 vec3)
+        {
+            return new Vector3(
+                ((vec3.X * mat3.M00) + (vec3.Y * mat3.M01) + (vec3.Z * mat3.M02)),
+                ((vec3.X * mat3.M10) + (vec3.Y * mat3.M11) + (vec3.Z * mat3.M12)),
+                ((vec3.X * mat3.M20) + (vec3.Y * mat3.M21) + (vec3.Z * mat3.M22)));
         }
     }
 }

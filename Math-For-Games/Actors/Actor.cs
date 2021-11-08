@@ -40,6 +40,7 @@ namespace Math_For_Games
         private Shape _shape;
         private Color _color;
 
+
         //The collider attached to this actor
         public Collider Collider
         {
@@ -61,11 +62,16 @@ namespace Math_For_Games
         public Vector3 Forward
         {
             get { return new Vector3(_rotation.M02, _rotation.M12, _rotation.M22); }
-            //set 
-            //{
-            //    Vector2 point = value.Normalized + LocalPosition;
-            //    LookAt(point);
-            //}
+        }
+
+        public Vector3 Right
+        {
+            get { return new Vector3(_rotation.M00, _rotation.M10, _rotation.M20); }
+        }
+
+        public Vector3 Upwards
+        {
+            get { return new Vector3(_rotation.M01, _rotation.M11, _rotation.M21); }
         }
 
         public float ScaleX
@@ -245,7 +251,7 @@ namespace Math_For_Games
         {
             System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
 
-            System.Numerics.Vector3 endPos = new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
+            //System.Numerics.Vector3 endPos = new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
 
             switch (_shape)
 
@@ -255,7 +261,7 @@ namespace Math_For_Games
                     break;
                 case Shape.SPHERE:
                     Raylib.DrawSphere(position, ScaleX, ShapeColor);
-                    Raylib.DrawLine3D(position, endPos, Color.RED);
+                    //Raylib.DrawLine3D(position, endPos, Color.RED);
                     break;
                 case Shape.NULL:
                     break;

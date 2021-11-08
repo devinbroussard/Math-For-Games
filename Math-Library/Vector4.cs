@@ -49,7 +49,7 @@ namespace Math_Library
             if (Magnitude == 0)
                 return new Vector4();
 
-            else return this / Magnitude;
+            else return this /= Magnitude;
         }
 
         public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
@@ -96,7 +96,7 @@ namespace Math_Library
         /// <returns>a new vector2 with the subtracted variables</returns>
         public static Vector4 operator -(Vector4 lhs, Vector4 rhs)
         {
-            return new Vector4 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z + rhs.Z, W = lhs.W + rhs.W};
+            return new Vector4 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z, W = lhs.W - rhs.W};
         }
 
         /// <summary>
