@@ -66,7 +66,7 @@ namespace Math_For_Games
             Vector3 directionOfTarget = (_actorToChase.LocalPosition - LocalPosition).Normalized;
             float distanceOfTarget = Vector3.GetDistance(_actorToChase.LocalPosition, LocalPosition);
 
-            return (Math.Acos(Vector3.GetDotProduct(directionOfTarget, Forward)) * 180/Math.PI) < _maxFov
+            return (Math.Acos(Vector3.DotProduct(directionOfTarget, Forward)) * 180/Math.PI) < _maxFov
                 && distanceOfTarget < 200;
         }
 

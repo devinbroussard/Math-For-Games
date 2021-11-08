@@ -53,12 +53,12 @@ namespace Math_Library
         /// <param name="lhs">The left hand side of the operation</param>
         /// <param name="rhs">THe right hand side of the operation</param>
         /// <returns>The dot product of the first vector onto the second</returns>
-        public static float GetDotProduct(Vector3 lhs, Vector3 rhs)
+        public static float DotProduct(Vector3 lhs, Vector3 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
-        public static Vector3 GetCrossProduct(Vector3 lhs, Vector3 rhs)
+        public static Vector3 CrossProduct(Vector3 lhs, Vector3 rhs)
         {
             return new Vector3(
                 ((lhs.Y * rhs.Z) - (lhs.Z * rhs.Y)),
@@ -112,12 +112,34 @@ namespace Math_Library
         }
 
         /// <summary>
+        /// Multiplies the vector's X and Y values by the scalar
+        /// </summary>
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector3 operator *(float scalar, Vector3 vec3)
+        {
+            return new Vector3 { X = vec3.X * scalar, Y = vec3.Y * scalar, Z = vec3.Z * scalar };
+        }
+
+        /// <summary>
         /// Divides the vector's X and Y values by the scalar
         /// </summary>
         /// <param name="vec2">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
         public static Vector3 operator /(Vector3 vec3, float scalar)
+        {
+            return new Vector3 { X = vec3.X / scalar, Y = vec3.Y / scalar, Z = vec3.Z / scalar };
+        }
+
+        /// <summary>
+        /// Divides the vector's X and Y values by the scalar
+        /// </summary>
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector3 operator /(float scalar, Vector3 vec3)
         {
             return new Vector3 { X = vec3.X / scalar, Y = vec3.Y / scalar, Z = vec3.Z / scalar };
         }

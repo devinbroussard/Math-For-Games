@@ -315,9 +315,9 @@ namespace Math_For_Games
         /// <param name="radians">The angle of the rotation in radians.</param>
         public void SetRotation(float radiansX, float radiansY, float radiansZ)
         {
-            Matrix4 rotationX = Matrix4.CreateXRotation(radiansX);
-            Matrix4 rotationY = Matrix4.CreateYRotation(radiansY);
-            Matrix4 rotationZ = Matrix4.CreateZRotation(radiansZ);
+            Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
+            Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
+            Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
 
             _rotation = rotationX * rotationY * rotationZ;
         }
@@ -329,9 +329,9 @@ namespace Math_For_Games
         public void Rotate(float radiansX, float radiansY, float radiansZ)
         {
 
-            Matrix4 rotationX = Matrix4.CreateXRotation(radiansX);
-            Matrix4 rotationY = Matrix4.CreateYRotation(radiansY);
-            Matrix4 rotationZ = Matrix4.CreateZRotation(radiansZ);
+            Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
+            Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
+            Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
 
             _rotation *= rotationX * rotationY * rotationZ;
         }
@@ -384,22 +384,22 @@ namespace Math_For_Games
                 alignAxis = new Vector3(1, 0, 0);
 
                 //Get the cross product of the direction and the right to find the new Y axis
-                newYAxis = Vector3.GetCrossProduct(direction, alignAxis);
+                newYAxis = Vector3.CrossProduct(direction, alignAxis);
                 newYAxis.Normalize(); //Normalize the new Y axis to prevent the matrix from being scaled
 
                 //Get the cross product of the new y axis and the direction to find the new x axis
-                newXAxis = Vector3.GetCrossProduct(newYAxis, direction);
+                newXAxis = Vector3.CrossProduct(newYAxis, direction);
                 newXAxis.Normalize(); //Also normalize the new X Axis
             }
             else
             {
                 //Get the cross product of upwards and the direction to find the new X axis
-                newXAxis = Vector3.GetCrossProduct(alignAxis, direction);
+                newXAxis = Vector3.CrossProduct(alignAxis, direction);
                 //Normalize the new X axis to prevent the matrix from being scaled
                 newXAxis.Normalize();
 
                 //Get the cross product of the direction and the new X axis to find the new Y axis
-                newYAxis = Vector3.GetCrossProduct(direction, newXAxis);
+                newYAxis = Vector3.CrossProduct(direction, newXAxis);
                 newYAxis.Normalize(); //Also normalize this axis
             }
 

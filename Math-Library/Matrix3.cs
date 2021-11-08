@@ -59,6 +59,20 @@ namespace Math_Library
                 );
         }
 
+
+
+        /// <summary>
+        /// Creates a new matrix that has been translated by the given value
+        /// </summary>
+        /// <param name="translation">The position of the new matrix</param>
+        public static Matrix3 CreateTranslation(Vector2 translation)
+        {
+            return new Matrix3(
+                1, 0, translation.X,
+                0, 1, translation.Y,
+                0, 0, 1
+                );
+        }
         /// <summary>
         /// Creates a new matrix that has been scaled by the given value
         /// </summary>

@@ -34,11 +34,11 @@ namespace Math_For_Games
             _timeBetweenShots += deltaTime;
 
             //Gets the xDirection and yDirection of the players input
-            int sideDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
+            int sideDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
+                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
             int yDirection = Convert.ToInt32(Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE));
             int forwardDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S)) - 1;
+                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             if (WorldPosition.Y >= 1)
                 yDirection = 0;
@@ -50,9 +50,9 @@ namespace Math_For_Games
             int zDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            //System.Numerics.Vector3 endPos = 
-                //new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + 
-                //Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
+
+
+            Velocity =  moveDirection.Normalized * Speed + Accleration * deltaTime;
 
             if (( zDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
             {
@@ -65,11 +65,10 @@ namespace Math_For_Games
                 Engine.CurrentScene.AddActor(bullet);
             }
 
-            Velocity =  Forward + moveDirection.Normalized * Speed + Accleration * deltaTime;
+
 
             base.Rotate(0, zRotation * 0.05f, 0);
             base.Translate(Velocity.X, Velocity.Y * 5, Velocity.Z);
-
 
             base.Update(deltaTime);
         }

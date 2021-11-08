@@ -52,7 +52,7 @@ namespace Math_Library
             else return this / Magnitude;
         }
 
-        public static Vector4 GetCrossProduct(Vector4 lhs, Vector4 rhs)
+        public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
         {
             return new Vector4(
                 ((lhs.Y * rhs.Z) - (lhs.Z * rhs.Y)),
@@ -64,7 +64,7 @@ namespace Math_Library
         /// <param name="lhs">The left hand side of the operation</param>
         /// <param name="rhs">THe right hand side of the operation</param>
         /// <returns>The dot product of the first vector onto the second</returns>
-        public static float GetDotProduct(Vector4 lhs, Vector4 rhs)
+        public static float DotProduct(Vector4 lhs, Vector4 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z) + (lhs.W * rhs.W);
         }
@@ -105,9 +105,38 @@ namespace Math_Library
         /// <param name="vec2">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
-        public static Vector4 operator *(Vector4 vec3, float scalar)
+        public static Vector4 operator *(Vector4 vec4, float scalar)
         {
-            return new Vector4 { X = vec3.X * scalar, Y = vec3.Y * scalar, Z = vec3.Z * scalar, W = vec3.W * scalar };
+            return new Vector4 { X = vec4.X * scalar, Y = vec4.Y * scalar, Z = vec4.Z * scalar, W = vec4.W * scalar };
+        }
+
+        /// <summary>
+        /// Multiplies the vector's X and Y values by the scalar
+        /// </summary>
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector4 operator *(float scalar, Vector4 vec4)
+        {
+            return new Vector4 { X = vec4.X * scalar, Y = vec4.Y * scalar, Z = vec4.Z * scalar, W = vec4.W * scalar };
+        }
+
+        public static Vector4 operator *(Vector4 vec4, Matrix4 mat4)
+        {
+            return new Vector4(
+                ((vec4.X * mat4.M00) + (vec4.Y * mat4.M01) + (vec4.Z * mat4.M02) + (vec4.W * mat4.M03)),
+                ((vec4.X * mat4.M10) + (vec4.Y * mat4.M11) + (vec4.Z * mat4.M12) + (vec4.W * mat4.M13)),
+                ((vec4.X * mat4.M20) + (vec4.Y * mat4.M21) + (vec4.Z * mat4.M22) + (vec4.W * mat4.M23)),
+                ((vec4.X * mat4.M30) + (vec4.Y * mat4.M31) + (vec4.Z * mat4.M32) + (vec4.W * mat4.M33)));
+        }
+
+        public static Vector4 operator *(Matrix4 mat4, Vector4 vec4)
+        {
+            return new Vector4(
+                ((vec4.X * mat4.M00) + (vec4.Y * mat4.M01) + (vec4.Z * mat4.M02) + (vec4.W * mat4.M03)),
+                ((vec4.X * mat4.M10) + (vec4.Y * mat4.M11) + (vec4.Z * mat4.M12) + (vec4.W * mat4.M13)),
+                ((vec4.X * mat4.M20) + (vec4.Y * mat4.M21) + (vec4.Z * mat4.M22) + (vec4.W * mat4.M23)),
+                ((vec4.X * mat4.M30) + (vec4.Y * mat4.M31) + (vec4.Z * mat4.M32) + (vec4.W * mat4.M33)));
         }
 
         /// <summary>
@@ -116,9 +145,20 @@ namespace Math_Library
         /// <param name="vec2">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
-        public static Vector4 operator /(Vector4 vec3, float scalar)
+        public static Vector4 operator /(Vector4 vec4, float scalar)
         {
-            return new Vector4 { X = vec3.X / scalar, Y = vec3.Y / scalar, Z = vec3.Z / scalar, W = vec3.W / scalar };
+            return new Vector4 { X = vec4.X / scalar, Y = vec4.Y / scalar, Z = vec4.Z / scalar, W = vec4.W / scalar };
+        }
+
+        /// <summary>
+        /// Divides the vector's X and Y values by the scalar
+        /// </summary>
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector4 operator /(float scalar, Vector4 vec4)
+        {
+            return new Vector4 { X = vec4.X / scalar, Y = vec4.Y / scalar, Z = vec4.Z / scalar, W = vec4.W / scalar };
         }
 
         /// <summary>
