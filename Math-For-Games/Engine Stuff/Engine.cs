@@ -63,12 +63,13 @@ namespace Math_For_Games
             int width = Raylib.GetMonitorWidth(1);
             //Create a window using rayLib
             Raylib.InitWindow(width, height, "Math For Games");
+            Raylib.DisableCursor();
             Raylib.MaximizeWindow();
             Raylib.SetTargetFPS(60);
 
             Scene scene = new Scene();
 
-            Player player = new Player(0, 1, 0, 0.01f, 3, 0.5f, Color.SKYBLUE, "Player", Shape.SPHERE);
+            Player player = new Player(0, 1, 0, 1, 3, 0.5f, Color.SKYBLUE, "Player", Shape.SPHERE);
             Enemy enemy = new Enemy(0, 1, 3, 2, 3, player, 40, 2, Color.MAROON);
             _camera = new Camera(player);
 

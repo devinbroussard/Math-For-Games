@@ -35,7 +35,7 @@ namespace Math_For_Games
             get 
             {
                 if (GlobalTransform.M13 >= 1)
-                    _acceleration.Y = -5f;
+                    _acceleration.Y = -0.5f;
                 else
                     _acceleration.Y = 0;
                 return _acceleration;

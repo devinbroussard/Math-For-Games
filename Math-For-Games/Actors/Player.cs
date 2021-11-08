@@ -12,6 +12,7 @@ namespace Math_For_Games
         private float _cooldownTime;
         private float _lastHitTime;
         private float _jumpTime = 100;
+        private Vector2 _lastMousePosition;
 
         public float LastHitTime
         {
@@ -29,6 +30,17 @@ namespace Math_For_Games
 
         public override void Update(float deltaTime)
         {
+            Vector2 mouseOffset;
+            System.Numerics.Vector2 systemMousePosition = Raylib.GetMousePosition();
+            Vector2 mousePosition = new Vector2(systemMousePosition.X, systemMousePosition.Y);
+
+            if (_lastMousePosition != null)
+            {
+                mouseOffset = _lastMousePosition - mousePosition;
+            }
+
+            
+
             _lastHitTime += deltaTime;
             //Adds deltaTime to time between shots
             _timeBetweenShots += deltaTime;
@@ -56,9 +68,9 @@ namespace Math_For_Games
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
             float yDirection = 0;
-            if (_jumpTime < 1)
+            if (_jumpTime < 0.5)
             {
-                yDirection = 50;
+                yDirection = 0.2f;
                 _jumpTime += deltaTime;
             }
 
