@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Math_Library
+namespace MathLibrary
 {
     public struct Matrix4
     {

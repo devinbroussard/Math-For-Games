@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
-using Math_Library;
+using MathLibrary;
 using Raylib_cs;
 
 namespace Math_For_Games
@@ -59,33 +59,13 @@ namespace Math_For_Games
         {
             _stopwatch.Start();
 
-            int height = Raylib.GetMonitorHeight(1);
-            int width = Raylib.GetMonitorWidth(1);
-            //Create a window using rayLib
-            Raylib.InitWindow(width, height, "Math For Games");
-            Raylib.DisableCursor();
-            Raylib.MaximizeWindow();
-            Raylib.SetTargetFPS(60);
+            InitializeWindow();
 
             Scene scene = new Scene();
-
-            Player player = new Player(0, 1, 0, 1, 3, 0.5f, Color.SKYBLUE, "Player", Shape.SPHERE);
-            Enemy enemy = new Enemy(0, 1, 3, 2, 3, player, 40, 2, Color.MAROON);
-            _camera = new Camera(player);
-
-            player.AddChild(_camera);
-            player.SetScale(1, 1, 1);
-
-            enemy.SetScale(1, 1, 1);
-
-            scene.AddActor(player);
-            scene.AddActor(_camera);
-            scene.AddActor(enemy);
 
             _currentSceneIndex = AddScene(scene);
             CurrentScene = _scenes[_currentSceneIndex];
             _scenes[_currentSceneIndex].Start();
-
         }
 
         /// <summary>
@@ -169,6 +149,17 @@ namespace Math_For_Games
 
             //Return the current key being pressed
             return Console.ReadKey(true).Key;
+        }
+
+        public void InitializeWindow()
+        {
+            int height = Raylib.GetMonitorHeight(1);
+            int width = Raylib.GetMonitorWidth(1);
+            //Create a window using rayLib
+            Raylib.InitWindow(width, height, "Math For Games");
+            Raylib.DisableCursor();
+            Raylib.MaximizeWindow();
+            Raylib.SetTargetFPS(60);
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Math_Library;
+using MathLibrary;
 using Raylib_cs;
 
 namespace Math_For_Games
@@ -20,6 +20,7 @@ namespace Math_For_Games
             : base(owner, ColliderType.CIRCLE)
         {
             _collisionRadius = collisionRadius;
+            owner.Collider = this;
         }
 
         /// <summary>

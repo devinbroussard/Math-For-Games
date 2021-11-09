@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Math_Library;
+using MathLibrary;
 using Raylib_cs;
 
 namespace Math_For_Games
@@ -17,6 +17,7 @@ namespace Math_For_Games
         public Enemy(float x, float y, float z, float speed, int health, Actor actor, float maxFov, float cooldownTime, Color color, string name = "Enemy", Shape shape = Shape.SPHERE)
             : base(x, y, z, speed, health, color, name, shape)
         {
+            SetScale(1, 1, 1);
             _actorToChase = actor;
             _maxFov = maxFov;
             EnemyCount++;

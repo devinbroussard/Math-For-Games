@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Math_Library;
+using MathLibrary;
 using Raylib_cs;
 
 namespace Math_For_Games

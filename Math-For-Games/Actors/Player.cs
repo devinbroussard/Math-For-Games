@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Math_Library;
+using MathLibrary;
 using Raylib_cs;
 
 namespace Math_For_Games
@@ -26,6 +26,7 @@ namespace Math_For_Games
             Speed = speed;
             _cooldownTime = cooldownTime;
             Tag = ActorTag.PLAYER;
+            SetScale(1, 1, 1);
         }
 
         public override void Update(float deltaTime)

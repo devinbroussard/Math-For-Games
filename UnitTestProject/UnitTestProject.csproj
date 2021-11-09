@@ -51,9 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Math-Library\Math-Library.csproj">
+    <ProjectReference Include="..\Math-Library\MathLibrary.csproj">
       <Project>{b1c79cb8-d98f-4c83-9450-6549a0e3236c}</Project>
-      <Name>Math-Library</Name>
+      <Name>MathLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

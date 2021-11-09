@@ -40,3 +40,13 @@ C:\Users\devin\Desktop\Dev\Raylib-Shooter\Math-Library\obj\Debug\netstandard2.0\
 C:\Users\devin\Desktop\Dev\Raylib-Shooter\Math-Library\obj\Debug\netstandard2.0\Math-Library.dll
 C:\Users\devin\Desktop\Dev\Raylib-Shooter\Math-Library\obj\Debug\netstandard2.0\Math-Library.pdb
 C:\Users\s218014\source\repos\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.csprojAssemblyReference.cache
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.deps.json
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.dll
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\bin\Debug\netstandard2.0\Math-Library.pdb
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.csproj.AssemblyReference.cache
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.AssemblyInfoInputs.cache
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.AssemblyInfo.cs
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.csproj.CoreCompileInputs.cache
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.dll
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-Library\obj\Debug\netstandard2.0\Math-Library.pdb

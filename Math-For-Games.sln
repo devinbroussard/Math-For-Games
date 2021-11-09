@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math-For-Games", "Math-For-Games\Math-For-Games.csproj", "{5783442A-9758-4C04-9634-AA84E98A96A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math-Library", "Math-Library\Math-Library.csproj", "{B1C79CB8-D98F-4C83-9450-6549A0E3236C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibrary", "Math-Library\MathLibrary.csproj", "{B1C79CB8-D98F-4C83-9450-6549A0E3236C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sprites", "Sprites", "{C6166D71-2164-4107-A354-8956093C9B2B}"
 EndProject

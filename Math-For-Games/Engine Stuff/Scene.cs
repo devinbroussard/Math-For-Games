@@ -102,6 +102,33 @@ namespace Math_For_Games
         }
 
         /// <summary>
+        /// Adds an array of actors the scenes list of actors
+        /// </summary>
+        /// <param name="actor"></param>
+        public void AddActor(Actor[] actors)
+        {
+            //Create a temp array larger than the original
+            Actor[] tempArray = new Actor[_actors.Length + actors.Length];
+
+            int j = 0;
+            //Copy all values from the original array into the temp array
+            for (int i = 0; i < _actors.Length; i++)
+            {
+                tempArray[i] = _actors[i];
+                j++;
+            }
+            
+            for (int i = 0; i < actors.Length; i++)
+            {
+                tempArray[j] = actors[i];
+                j++;
+            }
+
+            //Set the old array to be the new array;
+            _actors = tempArray;
+        }
+
+        /// <summary>
         /// Adds an actor to the scenes list of UI elements.
         /// </summary>
         /// <param name="actor"></param>
