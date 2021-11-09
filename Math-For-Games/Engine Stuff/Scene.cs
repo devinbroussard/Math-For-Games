@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Raylib_cs;
 
 namespace Math_For_Games
 {
@@ -14,6 +15,7 @@ namespace Math_For_Games
         /// Array that stores UI stuff only
         /// </summary>
         private Actor[] _UIElements;
+        public static Actor[] SceneOneActors;
 
         public Scene()
         {
@@ -78,6 +80,15 @@ namespace Math_For_Games
         {
             for (int i = 0; i < _actors.Length; i++)
                 _actors[i].DestroySelf();
+        }
+        public static void InitializeActors()
+        {
+            //Initializing scene one actors
+            Player player = new Player(0, 1, 0, 1, 3, 0.5f, Color.SKYBLUE, "Player", Shape.SPHERE);
+            Enemy enemy = new Enemy(0, 1, 3, 2, 3, player, 40, 2, Color.MAROON);
+            Engine.Camera = new Camera(player);
+
+            SceneOneActors = new Actor[] { player, enemy, Engine.Camera };
         }
 
         /// <summary>

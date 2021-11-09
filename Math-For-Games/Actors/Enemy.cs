@@ -25,6 +25,12 @@ namespace Math_For_Games
             _cooldownTime = cooldownTime;
         }
 
+        public override void Start()
+        {
+            CircleCollider enemyCollider = new CircleCollider(1, this);
+            base.Start();
+        }
+
         public override void Update(float deltaTime)
         {
             _timeBetweenShots += deltaTime;

@@ -135,8 +135,6 @@ C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll
-C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.dll
-C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.pdb
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.csproj.AssemblyReference.cache
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.AssemblyInfoInputs.cache
@@ -145,3 +143,5 @@ C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.dll
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.pdb
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.genruntimeconfig.cache
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.dll
+C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.pdb

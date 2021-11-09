@@ -29,6 +29,12 @@ namespace Math_For_Games
             SetScale(1, 1, 1);
         }
 
+        public override void Start()
+        {
+            CircleCollider playerCollider = new CircleCollider(1, this);
+            base.Start();
+        }
+
         public override void Update(float deltaTime)
         {
             Vector2 mouseOffset;

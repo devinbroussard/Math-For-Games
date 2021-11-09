@@ -15,7 +15,7 @@ namespace Math_For_Games
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
         public static Scene CurrentScene;
-        private Camera _camera;
+        public static Camera Camera;
 
         /// <summary>
         /// Called to begin the application
@@ -60,11 +60,12 @@ namespace Math_For_Games
             _stopwatch.Start();
 
             InitializeWindow();
+            Scene.InitializeActors();
 
-            Scene scene = new Scene();
+            Scene sceneOne = new Scene();
+            sceneOne.AddActor(Scene.SceneOneActors);
 
-            _currentSceneIndex = AddScene(scene);
-            CurrentScene = _scenes[_currentSceneIndex];
+            SetCurrentScene(sceneOne);
             _scenes[_currentSceneIndex].Start();
         }
 
@@ -90,7 +91,7 @@ namespace Math_For_Games
         private void Draw()
         {
             Raylib.BeginDrawing();
-            Raylib.BeginMode3D(_camera.Camera3D);
+            Raylib.BeginMode3D(Camera.Camera3D);
 
             Raylib.ClearBackground(Color.DARKGRAY);
             Raylib.DrawGrid(500, 1);
@@ -136,19 +137,10 @@ namespace Math_For_Games
             return _scenes.Length - 1;
         }
 
-        /// <summary>
-        /// Gets the next key in the input stream
-        /// </summary>
-        /// <returns>The key that was pressed</returns>
-        public static ConsoleKey GetNextKey()
+        public void SetCurrentScene(Scene scene)
         {
-            //If there is no key being pressed...
-            if (!Console.KeyAvailable)
-                //...return
-                return 0;
-
-            //Return the current key being pressed
-            return Console.ReadKey(true).Key;
+            _currentSceneIndex = AddScene(scene);
+            CurrentScene = _scenes[_currentSceneIndex];
         }
 
         public void InitializeWindow()
