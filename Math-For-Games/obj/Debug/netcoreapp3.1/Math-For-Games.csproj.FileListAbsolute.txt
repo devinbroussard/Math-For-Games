@@ -4,8 +4,6 @@ C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.runtimeconfig.dev.json
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.dll
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-For-Games.pdb
-C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.dll
-C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\Math-Library.pdb
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.csprojAssemblyReference.cache
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.AssemblyInfoInputs.cache
 C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.AssemblyInfo.cs
@@ -145,3 +143,5 @@ C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\obj\Debug\netcoreapp3.1\Math-For-Games.genruntimeconfig.cache
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.dll
 C:\Users\devin\Desktop\Dev\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.pdb
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.dll
+C:\Users\s218014\source\repos\Math-For-Games\Math-For-Games\bin\Debug\netcoreapp3.1\MathLibrary.pdb

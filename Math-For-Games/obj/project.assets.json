@@ -132,19 +132,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\devin\\.nuget\\packages\\": {}
+    "C:\\Users\\s218014\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\devin\\Desktop\\Dev\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
+      "projectUniqueName": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
       "projectName": "Math-For-Games",
-      "projectPath": "C:\\Users\\devin\\Desktop\\Dev\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
-      "packagesPath": "C:\\Users\\devin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\devin\\Desktop\\Dev\\Math-For-Games\\Math-For-Games\\obj\\",
+      "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\Math-For-Games.csproj",
+      "packagesPath": "C:\\Users\\s218014\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-For-Games\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\devin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\s218014\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -156,10 +156,9 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\devin\\Desktop\\Dev\\Math-For-Games\\Math-Library\\MathLibrary.csproj": {
-              "projectPath": "C:\\Users\\devin\\Desktop\\Dev\\Math-For-Games\\Math-Library\\MathLibrary.csproj"
+            "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\MathLibrary.csproj": {
+              "projectPath": "C:\\Users\\s218014\\source\\repos\\Math-For-Games\\Math-Library\\MathLibrary.csproj"
             }
           }
         }
@@ -172,7 +171,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Raylib-cs": {
             "target": "Package",
@@ -194,7 +192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

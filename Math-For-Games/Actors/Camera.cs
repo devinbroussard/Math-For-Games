@@ -40,7 +40,7 @@ namespace Math_For_Games
             // Camera position
             _camera3D.position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
             // Point the camera is focused on
-            _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y, _targetActor.WorldPosition.Z);
+            _camera3D.target = new System.Numerics.Vector3(_targetActor.WorldPosition.X, _targetActor.WorldPosition.Y + 2, _targetActor.WorldPosition.Z);
 
             base.Update(deltaTime);
         }

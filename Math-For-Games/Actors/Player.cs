@@ -12,7 +12,7 @@ namespace Math_For_Games
         private float _cooldownTime;
         private float _lastHitTime;
         private float _jumpTime = 100;
-        private Vector2 _lastMousePosition;
+        private Vector2 mouseOrigin = new Vector2(Raylib.GetMonitorWidth(1)/2, Raylib.GetMonitorHeight(1)/2);
 
         public float LastHitTime
         {
@@ -37,72 +37,82 @@ namespace Math_For_Games
 
         public override void Update(float deltaTime)
         {
-            Vector2 mouseOffset;
-            System.Numerics.Vector2 systemMousePosition = Raylib.GetMousePosition();
-            Vector2 mousePosition = new Vector2(systemMousePosition.X, systemMousePosition.Y);
+            GetTranslationInput(deltaTime);
+            GetMouseInput();
+            
+            _lastHitTime += deltaTime;
 
-            if (_lastMousePosition != null)
+
+          
+            base.Update(deltaTime);
+        }
+
+        public void GetMouseInput()
+        {
+            Vector2 mousePosition = new Vector2(Raylib.GetMouseX(), Raylib.GetMouseY());
+            Vector2 mouseDelta = mousePosition - mouseOrigin;
+            Raylib.SetMousePosition(Raylib.GetMonitorWidth(1) / 2, Raylib.GetMonitorHeight(1) / 2);
+
+            float angle = MathF.Atan2(mouseDelta.Y, mouseDelta.X) * 0.000001f;
+            if (angle < 0) angle += 360;
+
+            if (mouseDelta.Magnitude < 0.1f)
             {
-                mouseOffset = _lastMousePosition - mousePosition;
+                angle = 0;
+
             }
 
-            
 
-            _lastHitTime += deltaTime;
-            //Adds deltaTime to time between shots
-            _timeBetweenShots += deltaTime;
+            base.Rotate(0, angle, angle);
 
+        }
 
+        public void GetTranslationInput(float deltaTime)
+        {
+            float upDirection = 0;
 
-            //Gets the xDirection and yDirection of the players input
+            //Gets the forward and side inputs of the player
+            int forwardDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
             int sideDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
 
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
-            {
                 _jumpTime = 0;
-            }
 
-            int forwardDirection = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
-
-            //if (WorldPosition.Y >= 1)
-                //yDirection = 0;
-
-            int zRotation = Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
-           - Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
-            int zDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
-
-            float yDirection = 0;
             if (_jumpTime < 0.5)
             {
-                yDirection = 0.2f;
+                upDirection = 0.4f;
                 _jumpTime += deltaTime;
             }
 
-            
+            Velocity = (forwardDirection * Forward) + (sideDirection * Right) + (upDirection * Upwards) * Speed + Accleration * deltaTime;
 
-            Velocity = (forwardDirection * Forward.Normalized) + (sideDirection * Right.Normalized) + (yDirection * Upwards.Normalized) * Speed + Accleration * deltaTime;
+            base.Translate(Velocity.X, Velocity.Y, Velocity.Z);
+        }
 
-            if (( zDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
+        public void getBulletInput(float deltaTime)
+        {
+            //Adds deltaTime to time between shots
+            _timeBetweenShots += deltaTime;
+
+            int zDirectionForBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
+
+            if ((zDirectionForBullet != 0) && (_timeBetweenShots >= _cooldownTime))
             {
                 _timeBetweenShots = 0;
                 Bullet bullet = new Bullet(LocalPosition, 50, "Player Bullet", Forward, this, Color.YELLOW, Shape.SPHERE, BulletType.COOKIE);
                 bullet.SetScale(0.3f, 0.3f, 0.3f);
                 //CircleCollider bulletCollider = new CircleCollider(20, bullet);
-                AABBCollider bulletCollider = new AABBCollider(30, 30, bullet);
+                AABBCollider bulletCollider = new AABBCollider(0.3f, 0.3f, bullet);
                 bullet.Collider = bulletCollider;
                 Engine.CurrentScene.AddActor(bullet);
             }
 
-            
-
-            base.Rotate(0, zRotation * 0.05f, 0);
-            base.Translate(Velocity.X, Velocity.Y, Velocity.Z);
-
-            base.Update(deltaTime);
         }
+
+
 
         public void TakeDamage()
         {
@@ -112,7 +122,7 @@ namespace Math_For_Games
         public override void OnCollision(Actor actor)
         {
             Console.WriteLine("Collision");
-            
+
         }
 
         public override void Draw()
